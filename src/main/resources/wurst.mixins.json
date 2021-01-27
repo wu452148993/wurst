@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "net.wurstclient.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "wurst.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "BlockEntityRenderDispatcherMixin",
+    "ClientPlayerEntityMixin",
+
+    "ScreenMixin",
+    "KeyboardMixin",
+    "GameRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
