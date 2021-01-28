@@ -67,7 +67,7 @@ public final class ClickGui
 		
 		ArrayList<Feature> features = new ArrayList<>();
 		features.addAll(WURST.getHax().getAllHax());
-		//features.addAll(WURST.getCmds().getAllCmds());
+		features.addAll(WURST.getCmds().getAllCmds());
 		features.addAll(WURST.getOtfs().getAllOtfs());
 		
 		for(Feature f : features)

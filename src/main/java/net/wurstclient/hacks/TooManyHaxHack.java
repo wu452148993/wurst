@@ -135,7 +135,7 @@ public final class TooManyHaxHack extends Hack
 		
 		ArrayList<Feature> features = new ArrayList<>();
 		features.addAll(WURST.getHax().getAllHax());
-		//features.addAll(WURST.getCmds().getAllCmds());
+		features.addAll(WURST.getCmds().getAllCmds());
 		features.addAll(WURST.getOtfs().getAllOtfs());
 		
 		for(Feature feature : features)

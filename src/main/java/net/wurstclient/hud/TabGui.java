@@ -46,7 +46,7 @@ public final class TabGui implements KeyPressListener
 		
 		ArrayList<Feature> features = new ArrayList<>();
 		features.addAll(WurstClient.INSTANCE.getHax().getAllHax());
-		//features.addAll(WurstClient.INSTANCE.getCmds().getAllCmds());
+		features.addAll(WurstClient.INSTANCE.getCmds().getAllCmds());
 		features.addAll(WurstClient.INSTANCE.getOtfs().getAllOtfs());
 		
 		for(Feature feature : features)

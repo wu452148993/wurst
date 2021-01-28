@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 
 import net.wurstclient.command.CmdList;
 import net.wurstclient.command.CmdProcessor;
+import net.wurstclient.command.Command;
 import net.wurstclient.keybinds.KeybindList;
 import net.wurstclient.keybinds.KeybindProcessor;
 import org.lwjgl.glfw.GLFW;
@@ -30,9 +31,6 @@ import net.minecraft.util.Util;
 //import net.wurstclient.altmanager.AltManager;
 //import net.wurstclient.analytics.WurstAnalytics;
 import net.wurstclient.clickgui.ClickGui;
-//import net.wurstclient.command.CmdList;
-//import net.wurstclient.command.CmdProcessor;
-//import net.wurstclient.command.Command;
 import net.wurstclient.event.EventManager;
 import net.wurstclient.events.ChatOutputListener;
 import net.wurstclient.events.GUIRenderListener;
@@ -108,7 +106,7 @@ public enum WurstClient
 		
 		Path settingsFile = wurstFolder.resolve("settings.json");
 		settingsProfileFolder = wurstFolder.resolve("settings");
-		this.settingsFile = new SettingsFile(settingsFile, hax, /*cmds,*/ otfs);
+		this.settingsFile = new SettingsFile(settingsFile, hax, cmds, otfs);
 		this.settingsFile.load();
 		hax.tooManyHaxHack.loadBlockedHacksFile();
 		
@@ -131,10 +129,12 @@ public enum WurstClient
 		Path friendsFile = wurstFolder.resolve("friends.json");
 		friends = new FriendsList(friendsFile);
 		friends.load();
-		
+		*/
+
 		hud = new IngameHUD();
 		eventManager.add(GUIRenderListener.class, hud);
-		
+
+		/*
 		rotationFaker = new RotationFaker();
 		eventManager.add(PreMotionListener.class, rotationFaker);
 		eventManager.add(PostMotionListener.class, rotationFaker);
@@ -270,11 +270,11 @@ public enum WurstClient
 		Hack hack = getHax().getHackByName(name);
 		if(hack != null)
 			return hack;
-		/*
+
 		Command cmd = getCmds().getCmdByName(name.substring(1));
 		if(cmd != null)
 			return cmd;
-		*/
+
 
 		OtherFeature otf = getOtfs().getOtfByName(name);
 		if(otf != null)

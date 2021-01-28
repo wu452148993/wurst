@@ -21,8 +21,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.wurstclient.Feature;
-//import net.wurstclient.command.CmdList;
-//import net.wurstclient.command.Command;
+import net.wurstclient.command.CmdList;
+import net.wurstclient.command.Command;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.hack.HackList;
 import net.wurstclient.other_feature.OtfList;
@@ -37,13 +37,13 @@ public final class SettingsFile
 	private final Map<String, Feature> featuresWithSettings;
 	private boolean disableSaving;
 	
-	public SettingsFile(Path path, HackList hax, /*CmdList cmds,*/ OtfList otfs)
+	public SettingsFile(Path path, HackList hax, CmdList cmds, OtfList otfs)
 	{
 		this.path = path;
-		featuresWithSettings = createFeatureMap(hax, /*cmds,*/ otfs);
+		featuresWithSettings = createFeatureMap(hax, cmds, otfs);
 	}
 	
-	private Map<String, Feature> createFeatureMap(HackList hax, /*CmdList cmds,*/
+	private Map<String, Feature> createFeatureMap(HackList hax, CmdList cmds,
 		OtfList otfs)
 	{
 		LinkedHashMap<String, Feature> map = new LinkedHashMap<>();
@@ -51,11 +51,11 @@ public final class SettingsFile
 		for(Hack hack : hax.getAllHax())
 			if(!hack.getSettings().isEmpty())
 				map.put(hack.getName(), hack);
-		/*
+
 		for(Command cmd : cmds.getAllCmds())
 			if(!cmd.getSettings().isEmpty())
 				map.put(cmd.getName(), cmd);
-		*/
+
 
 		for(OtherFeature otf : otfs.getAllOtfs())
 			if(!otf.getSettings().isEmpty())

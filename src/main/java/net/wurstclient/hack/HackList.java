@@ -38,10 +38,12 @@ public final class HackList implements UpdateListener
 	public final TooManyHaxHack tooManyHaxHack = new TooManyHaxHack();
 	public final JetpackHack jetpackHack = new JetpackHack();
 	public final NoSlowdownHack noSlowdownHack = new NoSlowdownHack();
+	public final InfiniChatHack infiniChatHack = new InfiniChatHack();
 	//public final StepHack stepHack = new StepHack();
 	public final HighJumpHack highJumpHack = new HighJumpHack();
 	public final NoFallHack noFallHack = new NoFallHack();
 	//public final SafeWalkHack safeWalkHack = new SafeWalkHack();
+	public final XRayHack xRayHack = new XRayHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -114,7 +116,7 @@ public final class HackList implements UpdateListener
 	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
 	public final HeadRollHack headRollHack = new HeadRollHack();
 	public final HealthTagsHack healthTagsHack = new HealthTagsHack();
-	public final InfiniChatHack infiniChatHack = new InfiniChatHack();
+
 	public final InstantBunkerHack instantBunkerHack = new InstantBunkerHack();
 	public final ItemEspHack itemEspHack = new ItemEspHack();
 	public final ItemGeneratorHack itemGeneratorHack = new ItemGeneratorHack();
@@ -181,7 +183,7 @@ public final class HackList implements UpdateListener
 	public final TrollPotionHack trollPotionHack = new TrollPotionHack();
 	public final TrueSightHack trueSightHack = new TrueSightHack();
 	public final TunnellerHack tunnellerHack = new TunnellerHack();
-	public final XRayHack xRayHack = new XRayHack();
+
 	*/
 
 	private final TreeMap<String, Hack> hax =

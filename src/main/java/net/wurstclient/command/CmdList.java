@@ -11,12 +11,15 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.TreeMap;
 
-import net.minecraft.crash.ReportedException;//CrashException;
+import net.minecraft.crash.ReportedException;
 import net.minecraft.crash.CrashReport;
-//import net.wurstclient.commands.*;
+import net.wurstclient.commands.*;
 
 public final class CmdList
 {
+	public final HelpCmd helpCmd = new HelpCmd();
+	public final SettingsCmd settingsCmd = new SettingsCmd();
+	public final SayCmd sayCmd = new SayCmd();
 	/*
 	public final AddAltCmd addAltCmd = new AddAltCmd();
 	public final AnnoyCmd annoyCmd = new AnnoyCmd();
@@ -39,7 +42,7 @@ public final class CmdList
 	public final GiveCmd giveCmd = new GiveCmd();
 	public final GmCmd gmCmd = new GmCmd();
 	public final GoToCmd goToCmd = new GoToCmd();
-	public final HelpCmd helpCmd = new HelpCmd();
+
 	public final InvseeCmd invseeCmd = new InvseeCmd();
 	public final IpCmd ipCmd = new IpCmd();
 	public final JumpCmd jumpCmd = new JumpCmd();
@@ -52,11 +55,11 @@ public final class CmdList
 	public final RepairCmd repairCmd = new RepairCmd();
 	public final RvCmd rvCmd = new RvCmd();
 	public final SvCmd svCmd = new SvCmd();
-	public final SayCmd sayCmd = new SayCmd();
+
 	public final SetCheckboxCmd setCheckboxCmd = new SetCheckboxCmd();
 	public final SetModeCmd setModeCmd = new SetModeCmd();
 	public final SetSliderCmd setSliderCmd = new SetSliderCmd();
-	public final SettingsCmd settingsCmd = new SettingsCmd();
+
 	public final TacoCmd tacoCmd = new TacoCmd();
 	public final TCmd tCmd = new TCmd();
 	public final TooManyHaxCmd tooManyHaxCmd = new TooManyHaxCmd();
