@@ -12,7 +12,11 @@
     "MouseMixin",
     "ScreenMixin",
     "KeyboardMixin",
-    "GameRendererMixin"
+    "GameRendererMixin",
+    "AbstractBlockStateMixin",
+    "ChatScreenMixin",
+    "FluidRendererMixin",
+    "ChunkOcclusionGraphBuilderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -44,6 +44,7 @@ public final class HackList implements UpdateListener
 	public final NoFallHack noFallHack = new NoFallHack();
 	//public final SafeWalkHack safeWalkHack = new SafeWalkHack();
 	public final XRayHack xRayHack = new XRayHack();
+	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -113,7 +114,6 @@ public final class HackList implements UpdateListener
 
 	/*
 	public final GlideHack glideHack = new GlideHack();
-	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
 	public final HeadRollHack headRollHack = new HeadRollHack();
 	public final HealthTagsHack healthTagsHack = new HealthTagsHack();
 
