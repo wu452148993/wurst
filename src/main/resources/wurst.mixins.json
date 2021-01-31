@@ -20,6 +20,9 @@
     "GameMenuScreenMixin",
     "ForgeIngameGuiMixin",
     "IngameHudMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "MinecraftClientMixin",
+    "KeyBindingMixin",
     "MixinCustomPayloadC2SPacket"
   ],
   "injectors": {

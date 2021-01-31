@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.InputMappings;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.wurstclient.command.CmdList;
 import net.wurstclient.command.CmdProcessor;
 import net.wurstclient.command.Command;
@@ -58,10 +60,10 @@ public enum WurstClient
 	INSTANCE;
 	
 	public static final Minecraft MC = Minecraft.getInstance();
-	//public static final IMinecraftClient IMC = (IMinecraftClient)MC;
+	public static final IMinecraftClient IMC = (IMinecraftClient)MC;
 	
-	public static final String VERSION = "7.10";
-	public static final String MC_VERSION = "1.16.5";
+	public static final String VERSION = "7.11";
+	public static final String MC_VERSION = "1.16.4";
 	
 	private WurstAnalytics analytics;
 	private EventManager eventManager;
@@ -76,7 +78,7 @@ public enum WurstClient
 	private Navigator navigator;
 	private CmdProcessor cmdProcessor;
 	private IngameHUD hud;
-	//private RotationFaker rotationFaker;
+	private RotationFaker rotationFaker;
 	private FriendsList friends;
 	
 	private boolean enabled = true;
@@ -135,22 +137,25 @@ public enum WurstClient
 		hud = new IngameHUD();
 		eventManager.add(GUIRenderListener.class, hud);
 
-		/*
+
 		rotationFaker = new RotationFaker();
 		eventManager.add(PreMotionListener.class, rotationFaker);
 		eventManager.add(PostMotionListener.class, rotationFaker);
-		
+
+		/*
 		updater = new WurstUpdater();
 		eventManager.add(UpdateListener.class, updater);
 		
 		Path altsFile = wurstFolder.resolve("alts.encrypted_json");
 		Path encFolder = createEncryptionFolder();
 		altManager = new AltManager(altsFile, encFolder);
-		
-		zoomKey = new KeyBinding("key.wurst.zoom", InputUtil.Type.KEYSYM,
+		*/
+
+		zoomKey = new KeyBinding("key.wurst.zoom", InputMappings.Type.KEYSYM,
 			GLFW.GLFW_KEY_V, "Zoom");
-		KeyBindingHelper.registerKeyBinding(zoomKey);
-				*/
+		//KeyBindingHelper.registerKeyBinding(zoomKey);
+		ClientRegistry.registerKeyBinding(zoomKey);
+
 
 		analytics.trackPageView("/mc" + MC_VERSION + "/v" + VERSION,
 			"Wurst " + VERSION + " MC" + MC_VERSION);
@@ -315,12 +320,10 @@ public enum WurstClient
 		return hud;
 	}
 
-	/*
 	public RotationFaker getRotationFaker()
 	{
 		return rotationFaker;
 	}
-	*/
 
 	public FriendsList getFriends()
 	{

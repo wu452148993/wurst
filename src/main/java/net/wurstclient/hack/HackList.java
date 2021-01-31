@@ -46,6 +46,7 @@ public final class HackList implements UpdateListener
 	public final XRayHack xRayHack = new XRayHack();
 	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
 	public final NoPumpkinHack noPumpkinHack = new NoPumpkinHack();
+	public final FreecamHack freecamHack = new FreecamHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -110,7 +111,7 @@ public final class HackList implements UpdateListener
 	/*
 	public final FollowHack followHack = new FollowHack();
 	public final ForceOpHack forceOpHack = new ForceOpHack();
-	public final FreecamHack freecamHack = new FreecamHack();
+
 	*/
 
 	/*

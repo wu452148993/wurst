@@ -50,8 +50,8 @@ public final class ZoomOtf extends OtherFeature implements MouseScrollListener
 		if(currentLevel == null)
 			currentLevel = level.getValue();
 
-		/*
-		if(!WURST.getZoomKey().isPressed())
+
+		if(!WURST.getZoomKey().isKeyDown())
 		{
 			currentLevel = level.getValue();
 			
@@ -62,7 +62,7 @@ public final class ZoomOtf extends OtherFeature implements MouseScrollListener
 			}
 			
 			return fov;
-		}*/
+		}
 		
 		if(defaultMouseSensitivity == null)
 			defaultMouseSensitivity = gameOptions.mouseSensitivity;
@@ -79,9 +79,8 @@ public final class ZoomOtf extends OtherFeature implements MouseScrollListener
 	@Override
 	public void onMouseScroll(double amount)
 	{
-		/*
-		if(!WURST.getZoomKey().isPressed() || !scroll.isChecked())
-			return;*/
+		if(!WURST.getZoomKey().isKeyDown() || !scroll.isChecked())
+			return;
 		
 		if(currentLevel == null)
 			currentLevel = level.getValue();

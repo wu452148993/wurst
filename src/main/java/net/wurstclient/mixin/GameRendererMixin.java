@@ -66,7 +66,6 @@ public abstract class GameRendererMixin
 		EventManager.fire(event);
 	}
 
-	/*
 	@Redirect(
 		at = @At(value = "FIELD",
 			target = "Lnet/minecraft/client/GameSettings;fov:D",
@@ -77,8 +76,7 @@ public abstract class GameRendererMixin
 	{
 		return WurstClient.INSTANCE.getOtfs().zoomOtf
 			.changeFovBasedOnZoom(options.fov);
-	}*/
-
+	}
 
 	@Inject(at = {@At(value = "INVOKE",
 		target = "Lnet/minecraft/entity/Entity;getEyePosition(F)Lnet/minecraft/util/math/vector/Vector3d;",

@@ -39,7 +39,7 @@ public final class JetpackHack extends Hack implements UpdateListener
 	@Override
 	public void onUpdate()
 	{
-		if(MC.gameSettings.keyBindJump.isPressed())
+		if(MC.gameSettings.keyBindJump.isKeyDown())
 			MC.player.jump();
 	}
 }

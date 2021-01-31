@@ -24,7 +24,7 @@ public abstract class Feature
 	protected static final WurstClient WURST = WurstClient.INSTANCE;
 	protected static final EventManager EVENTS = WURST.getEventManager();
 	protected static final Minecraft MC = WurstClient.MC;
-//	protected static final IMinecraftClient IMC = WurstClient.IMC;
+	protected static final IMinecraftClient IMC = WurstClient.IMC;
 	
 	private final LinkedHashMap<String, Setting> settings =
 		new LinkedHashMap<>();
