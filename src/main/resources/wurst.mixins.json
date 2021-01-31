@@ -16,7 +16,11 @@
     "AbstractBlockStateMixin",
     "ChatScreenMixin",
     "FluidRendererMixin",
-    "ChunkOcclusionGraphBuilderMixin"
+    "ChunkOcclusionGraphBuilderMixin",
+    "GameMenuScreenMixin",
+    "ForgeIngameGuiMixin",
+    "IngameHudMixin",
+    "MixinCustomPayloadC2SPacket"
   ],
   "injectors": {
     "defaultRequire": 1

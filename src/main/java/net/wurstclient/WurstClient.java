@@ -16,11 +16,13 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import net.minecraft.client.settings.KeyBinding;
 import net.wurstclient.command.CmdList;
 import net.wurstclient.command.CmdProcessor;
 import net.wurstclient.command.Command;
 import net.wurstclient.keybinds.KeybindList;
 import net.wurstclient.keybinds.KeybindProcessor;
+import net.wurstclient.navigator.Navigator;
 import org.lwjgl.glfw.GLFW;
 
 //import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -29,7 +31,7 @@ import net.minecraft.client.Minecraft;
 //import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Util;
 //import net.wurstclient.altmanager.AltManager;
-//import net.wurstclient.analytics.WurstAnalytics;
+import net.wurstclient.analytics.WurstAnalytics;
 import net.wurstclient.clickgui.ClickGui;
 import net.wurstclient.event.EventManager;
 import net.wurstclient.events.ChatOutputListener;
@@ -61,7 +63,7 @@ public enum WurstClient
 	public static final String VERSION = "7.10";
 	public static final String MC_VERSION = "1.16.5";
 	
-	//private WurstAnalytics analytics;
+	private WurstAnalytics analytics;
 	private EventManager eventManager;
 	//private AltManager altManager;
 	private HackList hax;
@@ -71,18 +73,18 @@ public enum WurstClient
 	private Path settingsProfileFolder;
 	private KeybindList keybinds;
 	private ClickGui gui;
-	//private Navigator navigator;
+	private Navigator navigator;
 	private CmdProcessor cmdProcessor;
 	private IngameHUD hud;
 	//private RotationFaker rotationFaker;
-	//private FriendsList friends;
+	private FriendsList friends;
 	
 	private boolean enabled = true;
 	private static boolean guiInitialized;
 	//private WurstUpdater updater;
 	private Path wurstFolder;
 	
-	//private KeyBinding zoomKey;
+	private KeyBinding zoomKey;
 	
 	public void initialize()
 	{
@@ -93,7 +95,7 @@ public enum WurstClient
 		String trackingID = "UA-52838431-5";
 		String hostname = "client.wurstclient.net";
 		Path analyticsFile = wurstFolder.resolve("analytics.json");
-		//analytics = new WurstAnalytics(trackingID, hostname, analyticsFile);
+		analytics = new WurstAnalytics(trackingID, hostname, analyticsFile);
 		
 		eventManager = new EventManager(this);
 		
@@ -122,14 +124,13 @@ public enum WurstClient
 		KeybindProcessor keybindProcessor =
 				new KeybindProcessor(hax, keybinds, cmdProcessor);
 		eventManager.add(KeyPressListener.class, keybindProcessor);
-		/*
+
 		Path preferencesFile = wurstFolder.resolve("preferences.json");
 		navigator = new Navigator(preferencesFile, hax, cmds, otfs);
 
 		Path friendsFile = wurstFolder.resolve("friends.json");
 		friends = new FriendsList(friendsFile);
 		friends.load();
-		*/
 
 		hud = new IngameHUD();
 		eventManager.add(GUIRenderListener.class, hud);
@@ -149,10 +150,11 @@ public enum WurstClient
 		zoomKey = new KeyBinding("key.wurst.zoom", InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_V, "Zoom");
 		KeyBindingHelper.registerKeyBinding(zoomKey);
-		
+				*/
+
 		analytics.trackPageView("/mc" + MC_VERSION + "/v" + VERSION,
 			"Wurst " + VERSION + " MC" + MC_VERSION);
-		*/
+
 	}
 	
 	private Path createWurstFolder()
@@ -205,13 +207,11 @@ public enum WurstClient
 		return encFolder;
 	}
 
-	/*
 	public WurstAnalytics getAnalytics()
 	{
 		return analytics;
 	}
-	*/
-	
+
 	public EventManager getEventManager()
 	{
 		return eventManager;
@@ -299,12 +299,10 @@ public enum WurstClient
 		return gui;
 	}
 
-	/*
 	public Navigator getNavigator()
 	{
 		return navigator;
 	}
-	*/
 
 	public CmdProcessor getCmdProcessor()
 	{
@@ -322,11 +320,12 @@ public enum WurstClient
 	{
 		return rotationFaker;
 	}
-	
+	*/
+
 	public FriendsList getFriends()
 	{
 		return friends;
-	}*/
+	}
 	
 	public boolean isEnabled()
 	{
@@ -355,12 +354,13 @@ public enum WurstClient
 		return wurstFolder;
 	}
 	
-	/*
+
 	public KeyBinding getZoomKey()
 	{
 		return zoomKey;
 	}
 
+	/*
 	public AltManager getAltManager()
 	{
 		return altManager;

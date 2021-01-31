@@ -31,11 +31,9 @@ public abstract class Feature
 	private final LinkedHashSet<PossibleKeybind> possibleKeybinds =
 		new LinkedHashSet<>();
 
-	/*
 	private final String searchTags =
 		getClass().isAnnotationPresent(SearchTags.class) ? String.join("\u00a7",
 			getClass().getAnnotation(SearchTags.class).value()) : "";
-	*/
 	
 	private final boolean safeToBlock =
 		!getClass().isAnnotationPresent(DontBlock.class);
@@ -88,12 +86,10 @@ public abstract class Feature
 		return Collections.unmodifiableSet(possibleKeybinds);
 	}
 
-	/*
 	public final String getSearchTags()
 	{
 		return searchTags;
 	}
-	*/
 	
 	public final boolean isSafeToBlock()
 	{

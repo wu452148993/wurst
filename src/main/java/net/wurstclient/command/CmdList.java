@@ -20,6 +20,7 @@ public final class CmdList
 	public final HelpCmd helpCmd = new HelpCmd();
 	public final SettingsCmd settingsCmd = new SettingsCmd();
 	public final SayCmd sayCmd = new SayCmd();
+	public final FriendsCmd friendsCmd = new FriendsCmd();
 	/*
 	public final AddAltCmd addAltCmd = new AddAltCmd();
 	public final AnnoyCmd annoyCmd = new AnnoyCmd();
@@ -37,7 +38,7 @@ public final class CmdList
 	public final ExcavateCmd excavateCmd = new ExcavateCmd();
 	public final FeaturesCmd featuresCmd = new FeaturesCmd();
 	public final FollowCmd followCmd = new FollowCmd();
-	public final FriendsCmd friendsCmd = new FriendsCmd();
+
 	public final GetPosCmd getPosCmd = new GetPosCmd();
 	public final GiveCmd giveCmd = new GiveCmd();
 	public final GmCmd gmCmd = new GmCmd();

@@ -31,7 +31,7 @@ public final class HackList implements UpdateListener
 	public final ClickGuiHack clickGuiHack = new ClickGuiHack();
 	public final FlightHack flightHack = new FlightHack();
 	public final FullbrightHack fullbrightHack = new FullbrightHack();
-	//public final NavigatorHack navigatorHack = new NavigatorHack();
+	public final NavigatorHack navigatorHack = new NavigatorHack();
 	public final RadarHack radarHack = new RadarHack();
 
 	public final RainbowUiHack rainbowUiHack = new RainbowUiHack();
@@ -45,6 +45,7 @@ public final class HackList implements UpdateListener
 	//public final SafeWalkHack safeWalkHack = new SafeWalkHack();
 	public final XRayHack xRayHack = new XRayHack();
 	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
+	public final NoPumpkinHack noPumpkinHack = new NoPumpkinHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -143,7 +144,6 @@ public final class HackList implements UpdateListener
 	public final NoFireOverlayHack noFireOverlayHack = new NoFireOverlayHack();
 	public final NoHurtcamHack noHurtcamHack = new NoHurtcamHack();
 	public final NoOverlayHack noOverlayHack = new NoOverlayHack();
-	public final NoPumpkinHack noPumpkinHack = new NoPumpkinHack();
 	public final NoWeatherHack noWeatherHack = new NoWeatherHack();
 	public final NoWebHack noWebHack = new NoWebHack();
 	public final NukerHack nukerHack = new NukerHack();
