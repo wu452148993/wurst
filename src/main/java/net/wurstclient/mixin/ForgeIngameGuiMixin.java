@@ -19,8 +19,7 @@ public class ForgeIngameGuiMixin extends AbstractGui {
             at = {@At(value = "INVOKE",
                     target = "Lcom/mojang/blaze3d/systems/RenderSystem;enableBlend()V",
                     ordinal = 1)},
-            method = {"renderIngameGui(Lcom/mojang/blaze3d/matrix/MatrixStack;F)V"}
-            ,remap = false)
+            method = {"renderIngameGui(Lcom/mojang/blaze3d/matrix/MatrixStack;F)V"})
     private void onRender(MatrixStack matrixStack, float partialTicks,
                           CallbackInfo ci)
     {
