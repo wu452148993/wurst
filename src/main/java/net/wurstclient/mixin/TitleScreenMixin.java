@@ -7,10 +7,11 @@
  */
 package net.wurstclient.mixin;
 
+import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +26,8 @@ import net.wurstclient.altmanager.screens.AltManagerScreen;
 @Mixin(MainMenuScreen.class)
 public abstract class TitleScreenMixin extends Screen
 {
+	private final ResourceLocation CMM_BUTTON_TEXTURES = new ResourceLocation("wurst", "cmmbutton.png");
+
 	private TitleScreenMixin(WurstClient wurst, ITextComponent text_1)
 	{
 		super(text_1);
@@ -35,11 +38,10 @@ public abstract class TitleScreenMixin extends Screen
 	{
 		if(!WurstClient.INSTANCE.isEnabled())
 			return;
-		
-		addButton(new Button(width / 2 + 2, y + spacingY * 2, 98, 20,
-			new StringTextComponent("Alt Manager"),
+
+		addButton(new ImageButton(width / 2 + 104, y + spacingY * 2, 20, 20, 0, 0, 20, CMM_BUTTON_TEXTURES, 20, 40,
 			b -> minecraft.displayGuiScreen(new AltManagerScreen(this,
-				WurstClient.INSTANCE.getAltManager()))));
+				WurstClient.INSTANCE.getAltManager())), new StringTextComponent("Alt Manager")));
 		
 		for(Widget button : buttons)
 		{
