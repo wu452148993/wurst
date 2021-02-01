@@ -27,12 +27,9 @@ import net.wurstclient.keybinds.KeybindProcessor;
 import net.wurstclient.navigator.Navigator;
 import org.lwjgl.glfw.GLFW;
 
-//import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.Minecraft;
-//import net.minecraft.client.options.KeyBinding;
-//import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Util;
-//import net.wurstclient.altmanager.AltManager;
+import net.wurstclient.altmanager.AltManager;
 import net.wurstclient.analytics.WurstAnalytics;
 import net.wurstclient.clickgui.ClickGui;
 import net.wurstclient.event.EventManager;
@@ -45,10 +42,7 @@ import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.hack.HackList;
 import net.wurstclient.hud.IngameHUD;
-//import net.wurstclient.keybinds.KeybindList;
-//import net.wurstclient.keybinds.KeybindProcessor;
 import net.wurstclient.mixinterface.IMinecraftClient;
-//import net.wurstclient.navigator.Navigator;
 import net.wurstclient.other_feature.OtfList;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.SettingsFile;
@@ -67,7 +61,7 @@ public enum WurstClient
 	
 	private WurstAnalytics analytics;
 	private EventManager eventManager;
-	//private AltManager altManager;
+	private AltManager altManager;
 	private HackList hax;
 	private CmdList cmds;
 	private OtfList otfs;
@@ -145,11 +139,11 @@ public enum WurstClient
 		/*
 		updater = new WurstUpdater();
 		eventManager.add(UpdateListener.class, updater);
-		
+		*/
+
 		Path altsFile = wurstFolder.resolve("alts.encrypted_json");
 		Path encFolder = createEncryptionFolder();
 		altManager = new AltManager(altsFile, encFolder);
-		*/
 
 		zoomKey = new KeyBinding("key.wurst.zoom", InputMappings.Type.KEYSYM,
 			GLFW.GLFW_KEY_V, "Zoom");
@@ -363,10 +357,8 @@ public enum WurstClient
 		return zoomKey;
 	}
 
-	/*
 	public AltManager getAltManager()
 	{
 		return altManager;
 	}
-	*/
 }

@@ -23,6 +23,7 @@
     "ClientPlayNetworkHandlerMixin",
     "MinecraftClientMixin",
     "KeyBindingMixin",
+    "TitleScreenMixin",
     "MixinCustomPayloadC2SPacket"
   ],
   "injectors": {
