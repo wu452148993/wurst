@@ -27,6 +27,7 @@ public final class WurstUpdater implements UpdateListener
 	@Override
 	public void onUpdate()
 	{
+		/*
 		if(thread == null)
 		{
 			thread = new Thread(() -> checkForUpdates(), "WurstUpdater");
@@ -39,7 +40,7 @@ public final class WurstUpdater implements UpdateListener
 		
 		if(component != null)
 			ChatUtils.component(component);
-		
+		*/
 		WurstClient.INSTANCE.getEventManager().remove(UpdateListener.class,
 			this);
 	}
