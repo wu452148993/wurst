@@ -46,7 +46,7 @@ import net.wurstclient.mixinterface.IMinecraftClient;
 import net.wurstclient.other_feature.OtfList;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.SettingsFile;
-//import net.wurstclient.update.WurstUpdater;
+import net.wurstclient.update.WurstUpdater;
 import net.wurstclient.util.json.JsonException;
 
 public enum WurstClient
@@ -77,7 +77,7 @@ public enum WurstClient
 	
 	private boolean enabled = true;
 	private static boolean guiInitialized;
-	//private WurstUpdater updater;
+	private WurstUpdater updater;
 	private Path wurstFolder;
 	
 	private KeyBinding zoomKey;
@@ -136,10 +136,8 @@ public enum WurstClient
 		eventManager.add(PreMotionListener.class, rotationFaker);
 		eventManager.add(PostMotionListener.class, rotationFaker);
 
-		/*
 		updater = new WurstUpdater();
 		eventManager.add(UpdateListener.class, updater);
-		*/
 
 		Path altsFile = wurstFolder.resolve("alts.encrypted_json");
 		Path encFolder = createEncryptionFolder();
@@ -339,12 +337,12 @@ public enum WurstClient
 			hax.panicHack.setEnabled(true);
 			hax.panicHack.onUpdate();
 		}
-	}
+	}*/
 	
 	public WurstUpdater getUpdater()
 	{
 		return updater;
-	}*/
+	}
 	
 	public Path getWurstFolder()
 	{
