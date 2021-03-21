@@ -2,13 +2,19 @@ FORK OF wu452148993's PORT FROM FABRIC TO FORGE
 
 wurst forge 1.16.4
 need people XD
-Current completion function:
+
+Currently working hacks:
 x-ray
-fullbright
 nofall
 freecam
 flight
 bunnyhop
+
+
+Implemented but not working:
+fullbright
+reach
+
 
 Official website:
 https://www.wurstclient.net

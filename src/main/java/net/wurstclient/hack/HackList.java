@@ -48,6 +48,7 @@ public final class HackList implements UpdateListener
 	public final NoPumpkinHack noPumpkinHack = new NoPumpkinHack();
 	public final FreecamHack freecamHack = new FreecamHack();
 	public final BunnyHopHack bunnyHopHack = new BunnyHopHack();
+	public final ReachHack reachHack = new ReachHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -161,7 +162,6 @@ public final class HackList implements UpdateListener
 	*/
 
 	/*
-	public final ReachHack reachHack = new ReachHack();
 	public final RemoteViewHack remoteViewHack = new RemoteViewHack();
 	public final ScaffoldWalkHack scaffoldWalkHack = new ScaffoldWalkHack();
 	public final SearchHack searchHack = new SearchHack();
