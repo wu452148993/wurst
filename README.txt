@@ -8,6 +8,7 @@ fullbright
 nofall
 freecam
 flight
+bunnyhop
 
 Official website:
 https://www.wurstclient.net
