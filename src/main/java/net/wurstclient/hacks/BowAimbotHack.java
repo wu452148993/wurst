@@ -7,17 +7,20 @@
  */
 package net.wurstclient.hacks;
 
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -25,9 +28,8 @@ import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.item.*;
-import net.minecraft.util.ActionResult;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -147,6 +149,14 @@ public final class BowAimbotHack extends Hack
 
 	}
 
+	public static void restoreContextHandlers(KeyBinding... keys) {
+		restoreContextHandlers((KeyBinding) Arrays.asList(keys));
+	}
+
+	public static void restoreContextHandler(KeyBinding key) {
+		restoreContextHandlers((KeyBinding) Collections.singleton(key));
+	}
+
 	@Override
 	public void onEnable()
 	{
@@ -160,6 +170,7 @@ public final class BowAimbotHack extends Hack
 		EVENTS.remove(GUIRenderListener.class, this);
 		EVENTS.remove(RenderListener.class, this);
 		EVENTS.remove(UpdateListener.class, this);
+		restoreContextHandler(Minecraft.getInstance().gameSettings.keyBindAttack);
 	}
 	
 	@Override
@@ -175,9 +186,9 @@ public final class BowAimbotHack extends Hack
 			target = null;
 			return;
 		}
-		
+
 		// check if using bow
-		if(item instanceof BowItem && !player.isSneaking())
+		if(item instanceof BowItem && !MC.gameSettings.keyBindUseItem.isKeyDown())
 		{
 			target = null;
 			return;
