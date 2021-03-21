@@ -49,6 +49,7 @@ public final class HackList implements UpdateListener
 	public final FreecamHack freecamHack = new FreecamHack();
 	public final BunnyHopHack bunnyHopHack = new BunnyHopHack();
 	public final ReachHack reachHack = new ReachHack();
+	public final BowAimbotHack bowAimbotHack = new BowAimbotHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -83,7 +84,6 @@ public final class HackList implements UpdateListener
 	public final BlinkHack blinkHack = new BlinkHack();
 	public final BoatFlyHack boatFlyHack = new BoatFlyHack();
 	public final BonemealAuraHack bonemealAuraHack = new BonemealAuraHack();
-	public final BowAimbotHack bowAimbotHack = new BowAimbotHack();
 	public final BuildRandomHack buildRandomHack = new BuildRandomHack();
 	public final CameraNoClipHack cameraNoClipHack = new CameraNoClipHack();
 	public final CaveFinderHack caveFinderHack = new CaveFinderHack();

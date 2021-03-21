@@ -95,7 +95,7 @@ public enum RenderUtils
 		GL11.glEnd();
 	}
 	
-	public static void drawOutlinedBox()
+	public static void drawOutlinedBox(Vector3d bb)
 	{
 		drawOutlinedBox(DEFAULT_AABB);
 	}
