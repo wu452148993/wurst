@@ -7,12 +7,15 @@
  */
 package net.wurstclient.hacks;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.MouseEvent;
 import java.util.Comparator;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
@@ -22,7 +25,10 @@ import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.item.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
 //import net.minecraft.client.util.Window;
@@ -113,6 +119,7 @@ public final class BowAimbotHack extends Hack
 	
 	private Entity target;
 	private float velocity;
+	private static boolean trigger;
 	
 	public BowAimbotHack()
 	{
@@ -139,7 +146,7 @@ public final class BowAimbotHack extends Hack
 		//addSetting(filterCrystals); Removed
 
 	}
-	
+
 	@Override
 	public void onEnable()
 	{
@@ -149,8 +156,7 @@ public final class BowAimbotHack extends Hack
 	}
 	
 	@Override
-	public void onDisable()
-	{
+	public void onDisable() {
 		EVENTS.remove(GUIRenderListener.class, this);
 		EVENTS.remove(RenderListener.class, this);
 		EVENTS.remove(UpdateListener.class, this);
@@ -171,7 +177,7 @@ public final class BowAimbotHack extends Hack
 		}
 		
 		// check if using bow
-		if(item instanceof BowItem)// && !BowItem.getUseAction(stack))
+		if(item instanceof BowItem && !player.isSneaking())
 		{
 			target = null;
 			return;
@@ -207,7 +213,7 @@ public final class BowAimbotHack extends Hack
 			- player.getPosX() ;
 		double posY = target.getPosY()  + (target.getPosY() - target.lastTickPosY) * d
 			+ target.getHeight() * 0.5 - player.getPosY()
-			- player.getEyeHeight(player.getPose());
+			- player.getEyeHeight(player.getPose())+0.6;
 		double posZ = target.getPosZ() + (target.getPosZ() - target.lastTickPosZ) * d
 			- player.getPosZ();
 		
