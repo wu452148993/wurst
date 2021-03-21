@@ -47,6 +47,7 @@ public final class HackList implements UpdateListener
 	public final HandNoClipHack handNoClipHack = new HandNoClipHack();
 	public final NoPumpkinHack noPumpkinHack = new NoPumpkinHack();
 	public final FreecamHack freecamHack = new FreecamHack();
+	public final BunnyHopHack bunnyHopHack = new BunnyHopHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -83,7 +84,6 @@ public final class HackList implements UpdateListener
 	public final BonemealAuraHack bonemealAuraHack = new BonemealAuraHack();
 	public final BowAimbotHack bowAimbotHack = new BowAimbotHack();
 	public final BuildRandomHack buildRandomHack = new BuildRandomHack();
-	public final BunnyHopHack bunnyHopHack = new BunnyHopHack();
 	public final CameraNoClipHack cameraNoClipHack = new CameraNoClipHack();
 	public final CaveFinderHack caveFinderHack = new CaveFinderHack();
 	public final ChatTranslatorHack chatTranslatorHack =
@@ -188,7 +188,7 @@ public final class HackList implements UpdateListener
 	*/
 
 	private final TreeMap<String, Hack> hax =
-		new TreeMap<>((o1, o2) -> o1.compareToIgnoreCase(o2));
+		new TreeMap<>(String::compareToIgnoreCase);
 	
 	private final EnabledHacksFile enabledHacksFile;
 	private final Path profilesFolder =
@@ -257,7 +257,7 @@ public final class HackList implements UpdateListener
 		try(Stream<Path> files = Files.list(profilesFolder))
 		{
 			return files.filter(Files::isRegularFile)
-				.collect(Collectors.toCollection(() -> new ArrayList<>()));
+				.collect(Collectors.toCollection(ArrayList::new));
 			
 		}catch(IOException e)
 		{

@@ -24,6 +24,6 @@ public final class ClearCmd extends Command
 		if(args.length > 0)
 			throw new CmdSyntaxError();
 		
-		MC.inGameHud.getChatHud().clear(true);
+		MC.ingameGUI.getChatGUI().clearChatMessages(true);
 	}
 }
