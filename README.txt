@@ -4,16 +4,17 @@ wurst forge 1.16.4
 need people XD
 
 Currently working hacks:
-x-ray
-nofall
-freecam
-flight
-bunnyhop
+X-Ray
+NoFall
+Freecam
+Flight
+BunnyHop
+BowAimbot - Added functionality to only target entities that can be seen
 
 
 Implemented but not working:
-fullbright
-reach
+FullBright
+Reach
 
 
 Official website:
