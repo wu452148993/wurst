@@ -9,12 +9,21 @@ NoFall
 Freecam
 Flight
 BunnyHop
-BowAimbot - Added functionality to only target entities that can be seen
+BowAimbot - With Enhancements (Toggle to target entities even if they are behind a wall - "Target Visable")
 
 
 Implemented but not working:
 FullBright
 Reach
+MobESP
+
+
+TODO:
+ - Remove Endermen from BowAimbot targeting (Can't be hit by arrows)
+ - Possibly add a distance limit setting for BowAimbot targeting
+ - Fix FullBright
+ - Fix Reach
+ - Fix ESP boxes not drawing
 
 
 Official website:

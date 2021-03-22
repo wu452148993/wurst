@@ -60,7 +60,9 @@ public final class BowAimbotHack extends Hack
 			"Controls the strength of BowAimbot's\n"
 				+ "movement prediction algorithm.",
 			0.2, 0, 2, 0.01, ValueDisplay.PERCENTAGE);
-	
+
+	private final CheckboxSetting targetVisible = new CheckboxSetting(
+			"Visible Targets", "Only snap to visible targets.", false);
 	private final CheckboxSetting filterPlayers = new CheckboxSetting(
 		"Filter players", "Won't attack other players.", false);
 	private final CheckboxSetting filterSleeping = new CheckboxSetting(
@@ -117,7 +119,7 @@ public final class BowAimbotHack extends Hack
 		setCategory(Category.COMBAT);
 		addSetting(priority);
 		addSetting(predictMovement);
-		
+		addSetting(targetVisible);
 		addSetting(filterPlayers);
 		addSetting(filterSleeping);
 		//addSetting(filterFlying); Removed
@@ -139,9 +141,11 @@ public final class BowAimbotHack extends Hack
 	public boolean canEntityBeSeen(Entity entityIn) {
 		Vector3d vector3d = new Vector3d(MC.player.getPosX(), MC.player.getPosYEye(), MC.player.getPosZ());
 		Vector3d vector3d1 = new Vector3d(entityIn.getPosX(), entityIn.getPosYEye(), entityIn.getPosZ());
-		if(vector3d != null && vector3d1 != null) {
+		if(vector3d != null && vector3d1 != null && targetVisible.isChecked()) {
 			return MC.world.rayTraceBlocks(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, MC.player)).getType() == RayTraceResult.Type.MISS;
-		} else {
+		} else if (!targetVisible.isChecked()) {
+			return true;
+		}else {
 			return false;
 		}
 	}
@@ -309,6 +313,7 @@ public final class BowAimbotHack extends Hack
 		
 		// set position
 		GL11.glTranslated(target.getPosX(), target.getPosY(), target.getPosZ());
+		Vector3d targetBox = new Vector3d(target.getPosX(), target.getPosY(), target.getPosZ());
 		
 		// set size
 		double boxWidth = target.getWidth() + 0.1;
@@ -323,11 +328,11 @@ public final class BowAimbotHack extends Hack
 		
 		// draw outline
 		GL11.glColor4d(1, 0, 0, 0.5F * velocity);
-		//RenderUtils.drawOutlinedBox(TARGET_BOX);
+		RenderUtils.drawOutlinedBox(targetBox);
 		
 		// draw box
 		GL11.glColor4d(1, 0, 0, 0.25F * velocity);
-		//RenderUtils.drawSolidBox(TARGET_BOX);
+		RenderUtils.drawSolidBox(targetBox);
 		
 		GL11.glPopMatrix();
 		
