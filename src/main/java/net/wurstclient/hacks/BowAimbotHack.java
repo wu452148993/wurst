@@ -28,7 +28,11 @@ import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.item.*;
+import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
@@ -149,12 +153,14 @@ public final class BowAimbotHack extends Hack
 
 	}
 
-	public static void restoreContextHandlers(KeyBinding... keys) {
-		restoreContextHandlers((KeyBinding) Arrays.asList(keys));
-	}
-
-	public static void restoreContextHandler(KeyBinding key) {
-		restoreContextHandlers((KeyBinding) Collections.singleton(key));
+	public boolean canEntityBeSeen(Entity entityIn) {
+		Vector3d vector3d = new Vector3d(MC.player.getPosX(), MC.player.getPosYEye(), MC.player.getPosZ());
+		Vector3d vector3d1 = new Vector3d(entityIn.getPosX(), entityIn.getPosYEye(), entityIn.getPosZ());
+		if(vector3d != null && vector3d1 != null) {
+			return MC.world.rayTraceBlocks(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, MC.player)).getType() == RayTraceResult.Type.MISS;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -170,7 +176,6 @@ public final class BowAimbotHack extends Hack
 		EVENTS.remove(GUIRenderListener.class, this);
 		EVENTS.remove(RenderListener.class, this);
 		EVENTS.remove(UpdateListener.class, this);
-		restoreContextHandler(Minecraft.getInstance().gameSettings.keyBindAttack);
 	}
 	
 	@Override
@@ -206,9 +211,9 @@ public final class BowAimbotHack extends Hack
 			target = filterEntities(StreamSupport
 				.stream(MC.world.getAllEntities().spliterator(), true));
 		
-		if(target == null)
+		if(target == null || canEntityBeSeen(target) == false)
 			return;
-		
+
 		// set velocity
 		float f = (float)20 / 20.0F;
 		velocity = (f * f + f * 2.0F) / 3.0F;
@@ -224,7 +229,7 @@ public final class BowAimbotHack extends Hack
 			- player.getPosX() ;
 		double posY = target.getPosY()  + (target.getPosY() - target.lastTickPosY) * d
 			+ target.getHeight() * 0.5 - player.getPosY()
-			- player.getEyeHeight(player.getPose())+0.6;
+			- player.getEyeHeight(player.getPose())+0.4;
 		double posZ = target.getPosZ() + (target.getPosZ() - target.lastTickPosZ) * d
 			- player.getPosZ();
 		
