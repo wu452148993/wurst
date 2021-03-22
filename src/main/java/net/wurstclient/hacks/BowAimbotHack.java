@@ -7,20 +7,13 @@
  */
 package net.wurstclient.hacks;
 
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.GameSettings;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -31,18 +24,11 @@ import net.minecraft.item.*;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
 
-//import net.minecraft.client.util.Window;
-//import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.util.math.Box;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.events.GUIRenderListener;
@@ -119,9 +105,6 @@ public final class BowAimbotHack extends Hack
 		"Filter armor stands", "Won't attack armor stands.", false);
 	private final CheckboxSetting filterCrystals = new CheckboxSetting(
 		"Filter end crystals", "Won't attack end crystals.", false);
-	
-	//private static final Box TARGET_BOX =
-	//	new Box(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5);//////////////////////////////////////////////////////////////////////
 	
 	private Entity target;
 	private float velocity;
@@ -375,25 +358,6 @@ public final class BowAimbotHack extends Hack
 		else
 			message = "Target Locked";
 
-		/*
-		// translate to center
-		Window sr = MC.getWindow();
-		int msgWidth = MC.textRenderer.getWidth(message);
-		GL11.glTranslated(sr.getScaledWidth() / 2 - msgWidth / 2,
-			sr.getScaledHeight() / 2 + 1, 0);
-
-		// background
-		GL11.glColor4f(0, 0, 0, 0.5F);
-		GL11.glBegin(GL11.GL_QUADS);
-		{
-			GL11.glVertex2d(0, 0);
-			GL11.glVertex2d(msgWidth + 3, 0);
-			GL11.glVertex2d(msgWidth + 3, 10);
-			GL11.glVertex2d(0, 10);
-		}
-		GL11.glEnd();
-
-		 */
 		
 		// text
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
