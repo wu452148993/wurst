@@ -42,7 +42,7 @@ public enum ChatUtils
 
 		NewChatGui chatHud = MC.ingameGUI.getChatGUI();
 		StringTextComponent prefix = new StringTextComponent(WURST_PREFIX);
-		chatHud.printChatMessage(prefix.append(component));
+		chatHud.printChatMessage(prefix.appendSibling(component));
 	}
 	
 	public static void message(String message)
