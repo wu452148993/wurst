@@ -5,6 +5,7 @@ need people XD
 
 Currently working hacks:
 X-Ray
+FullBright
 NoFall
 Freecam
 Flight
@@ -13,7 +14,6 @@ BowAimbot - With Enhancements (Toggle to target entities even if they are behind
 
 
 Implemented but not working:
-FullBright
 Reach
 MobESP
 

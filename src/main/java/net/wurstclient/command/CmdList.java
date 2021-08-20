@@ -21,6 +21,8 @@ public final class CmdList
 	public final SettingsCmd settingsCmd = new SettingsCmd();
 	public final SayCmd sayCmd = new SayCmd();
 	public final FriendsCmd friendsCmd = new FriendsCmd();
+	public final DupeCmd dupeCmd = new DupeCmd();
+	public final ViewNbtCmd viewNbtCmd = new ViewNbtCmd();
 	/*
 	public final AddAltCmd addAltCmd = new AddAltCmd();
 	public final AnnoyCmd annoyCmd = new AnnoyCmd();
@@ -67,7 +69,6 @@ public final class CmdList
 	public final TpCmd tpCmd = new TpCmd();
 	public final UnbindCmd unbindCmd = new UnbindCmd();
 	public final VClipCmd vClipCmd = new VClipCmd();
-	public final ViewNbtCmd viewNbtCmd = new ViewNbtCmd();
 	*/
 	private final TreeMap<String, Command> cmds =
 		new TreeMap<>((o1, o2) -> o1.compareToIgnoreCase(o2));
