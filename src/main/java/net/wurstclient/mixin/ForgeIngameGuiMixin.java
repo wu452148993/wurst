@@ -23,6 +23,9 @@ public class ForgeIngameGuiMixin extends AbstractGui {
     private void onRender(MatrixStack matrixStack, float partialTicks,
                           CallbackInfo ci)
     {
+        if(WurstClient.MC.gameSettings.hideGUI)
+            return;
+
         if(WurstClient.MC.gameSettings.showDebugInfo)
             return;
 

@@ -13,7 +13,7 @@ import net.minecraft.network.play.client.CCustomPayloadPacket;
 import net.wurstclient.DontBlock;
 import net.wurstclient.SearchTags;
 import net.wurstclient.events.ConnectionPacketOutputListener;
-import net.wurstclient.mixinterface.CustomPayloadC2SPacketAccessor;
+import net.wurstclient.mixin.CustomPayloadC2SPacketAccessor;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.CheckboxSetting;
 
@@ -41,7 +41,7 @@ public final class VanillaSpoofOtf extends OtherFeature
 		if(!spoof.isChecked())
 			return;
 		
-		if(!(event.getPacket() instanceof CCustomPayloadPacket))
+		if(!(event.getPacket() instanceof CustomPayloadC2SPacketAccessor))
 			return;
 
 		CustomPayloadC2SPacketAccessor packet =

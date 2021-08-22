@@ -52,6 +52,7 @@ public final class HackList implements UpdateListener
 	public final BowAimbotHack bowAimbotHack = new BowAimbotHack();
 	public final MileyCyrusHack mileyCyrusHack = new MileyCyrusHack();
 	public final MobEspHack mobEspHack = new MobEspHack();
+	public final NoBackgroundHack noBackgroundHack = new NoBackgroundHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();

@@ -13,14 +13,19 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.MainWindow;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
+import net.minecraft.entity.item.EnderCrystalEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.EndermanEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.item.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -107,7 +112,10 @@ public final class BowAimbotHack extends Hack
 		"Filter armor stands", "Won't attack armor stands.", false);
 	private final CheckboxSetting filterCrystals = new CheckboxSetting(
 		"Filter end crystals", "Won't attack end crystals.", false);
-	
+
+	private static final AxisAlignedBB TARGET_BOX =
+			new AxisAlignedBB(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5);
+
 	private Entity target;
 	private float velocity;
 	private static boolean trigger;
@@ -122,19 +130,19 @@ public final class BowAimbotHack extends Hack
 		addSetting(targetVisible);
 		addSetting(filterPlayers);
 		addSetting(filterSleeping);
-		//addSetting(filterFlying); Removed
+		addSetting(filterFlying);
 		addSetting(filterMonsters);
 		addSetting(filterPigmen);
 		addSetting(filterEndermen);
 		addSetting(filterAnimals);
-		//addSetting(filterBabies); Removed
+		addSetting(filterBabies);
 		addSetting(filterPets);
-		//addSetting(filterTraders); Removed
+		addSetting(filterTraders);
 		addSetting(filterGolems);
 		addSetting(filterInvisible);
 		addSetting(filterNamed);
 		addSetting(filterStands);
-		//addSetting(filterCrystals); Removed
+		addSetting(filterCrystals);
 
 	}
 
@@ -180,7 +188,8 @@ public final class BowAimbotHack extends Hack
 		}
 
 		// check if using bow
-		if(item instanceof BowItem && !MC.gameSettings.keyBindUseItem.isKeyDown())
+		if(item instanceof BowItem && !MC.gameSettings.keyBindUseItem.isKeyDown()
+				&& !player.isHandActive())
 		{
 			target = null;
 			return;
@@ -198,16 +207,20 @@ public final class BowAimbotHack extends Hack
 			target = filterEntities(StreamSupport
 				.stream(MC.world.getAllEntities().spliterator(), true));
 		
-		if(target == null || canEntityBeSeen(target) == false)
+		if(target == null || !canEntityBeSeen(target))
 			return;
 
 		// set velocity
+		velocity = (72000 - player.getItemInUseCount()) / 20F;
+		velocity = (velocity * velocity + velocity * 2) / 3;
+		if(velocity > 1)
+			velocity = 1;
+		/*
 		float f = (float)20 / 20.0F;
 		velocity = (f * f + f * 2.0F) / 3.0F;
 		if (velocity > 1.0F) {
 			velocity = 1.0F;
-		}
-
+		}*/
 		
 		// set position to aim at
 		double d = RotationUtils.getEyesPos().distanceTo(
@@ -244,9 +257,11 @@ public final class BowAimbotHack extends Hack
 	private Entity filterEntities(Stream<Entity> s)
 	{
 		Stream<Entity> stream = s.filter(e -> e != null && !e.removed).filter(
-			e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0)
+			e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0
+					|| e instanceof EnderCrystalEntity)
 			.filter(e -> e != MC.player)
-			.filter(e -> !(e instanceof FakePlayerEntity));
+			.filter(e -> !(e instanceof FakePlayerEntity))
+			.filter(e -> !WURST.getFriends().contains(e.getScoreboardName()));
 		
 		if(filterPlayers.isChecked())
 			stream = stream.filter(e -> !(e instanceof PlayerEntity));
@@ -254,7 +269,18 @@ public final class BowAimbotHack extends Hack
 		if(filterSleeping.isChecked())
 			stream = stream.filter(e -> !(e instanceof PlayerEntity
 				&& ((PlayerEntity)e).isSleeping()));
-		
+
+		if(filterFlying.getValue() > 0)
+			stream = stream.filter(e -> {
+
+				if(!(e instanceof PlayerEntity))
+					return true;
+
+				AxisAlignedBB box = e.getBoundingBox();
+				box = box.union(box.offset(0, -filterFlying.getValue(), 0));
+				return !MC.world.hasNoCollisions(box);
+			});
+
 		if(filterMonsters.isChecked())
 			stream = stream.filter(e -> !(e instanceof MonsterEntity));
 		
@@ -269,14 +295,21 @@ public final class BowAimbotHack extends Hack
 				e -> !(e instanceof AnimalEntity || e instanceof AmbientEntity
 					|| e instanceof WaterMobEntity));
 		}
-		
+
+		if(filterBabies.isChecked())
+			stream = stream.filter(e -> !(e instanceof AgeableEntity
+					&& ((AgeableEntity)e).isChild()));
+
 		if(filterPets.isChecked())
 			stream = stream
 				.filter(e -> !(e instanceof TameableEntity
 					&& ((TameableEntity)e).isTamed()))
 				.filter(e -> !(e instanceof HorseEntity
 					&& ((HorseEntity)e).isTame()));
-		
+
+		if(filterTraders.isChecked())
+			stream = stream.filter(e -> !(e instanceof AbstractVillagerEntity));
+
 		if(filterGolems.isChecked())
 			stream = stream.filter(e -> !(e instanceof GolemEntity));
 		
@@ -289,7 +322,9 @@ public final class BowAimbotHack extends Hack
 		if(filterStands.isChecked())
 			stream = stream.filter(e -> !(e instanceof ArmorStandEntity));
 
-		
+		if(filterCrystals.isChecked())
+			stream = stream.filter(e -> !(e instanceof EnderCrystalEntity));
+
 		return stream.min(priority.getSelected().comparator).orElse(null);
 	}
 
@@ -313,7 +348,6 @@ public final class BowAimbotHack extends Hack
 		
 		// set position
 		GL11.glTranslated(target.getPosX(), target.getPosY(), target.getPosZ());
-		Vector3d targetBox = new Vector3d(target.getPosX(), target.getPosY(), target.getPosZ());
 		
 		// set size
 		double boxWidth = target.getWidth() + 0.1;
@@ -328,11 +362,11 @@ public final class BowAimbotHack extends Hack
 		
 		// draw outline
 		GL11.glColor4d(1, 0, 0, 0.5F * velocity);
-		RenderUtils.drawOutlinedBox(targetBox);
+		RenderUtils.drawOutlinedBox(TARGET_BOX);
 		
 		// draw box
 		GL11.glColor4d(1, 0, 0, 0.25F * velocity);
-		RenderUtils.drawSolidBox(targetBox);
+		RenderUtils.drawSolidBox(TARGET_BOX);
 		
 		GL11.glPopMatrix();
 		
@@ -363,10 +397,26 @@ public final class BowAimbotHack extends Hack
 		else
 			message = "Target Locked";
 
-		
+		// translate to center
+		MainWindow sr = MC.getMainWindow();
+		int msgWidth = MC.fontRenderer.getStringWidth(message);
+		GL11.glTranslated(sr.getScaledWidth() / 2 - msgWidth / 2,
+				sr.getScaledHeight() / 2 + 1, 0);
+
+		// background
+		GL11.glColor4f(0, 0, 0, 0.5F);
+		GL11.glBegin(GL11.GL_QUADS);
+		{
+			GL11.glVertex2d(0, 0);
+			GL11.glVertex2d(msgWidth + 3, 0);
+			GL11.glVertex2d(msgWidth + 3, 10);
+			GL11.glVertex2d(0, 10);
+		}
+		GL11.glEnd();
+
 		// text
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//MC.textRenderer.draw(matrixStack, message, 2, 1, 0xffffffff);
+		MC.fontRenderer.drawString(matrixStack, message, 2, 1, 0xffffffff);
 		
 		GL11.glPopMatrix();
 		

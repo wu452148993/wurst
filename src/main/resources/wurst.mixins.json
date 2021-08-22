@@ -24,7 +24,7 @@
     "MinecraftClientMixin",
     "KeyBindingMixin",
     "TitleScreenMixin",
-    "MixinCustomPayloadC2SPacket"
+    "CustomPayloadC2SPacketAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

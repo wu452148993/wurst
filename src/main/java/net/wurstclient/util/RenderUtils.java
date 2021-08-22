@@ -13,6 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.chunk.Chunk;
 import net.wurstclient.WurstClient;
 import org.lwjgl.opengl.GL11;
 
@@ -48,12 +49,22 @@ public enum RenderUtils
 		applyCameraRotationOnly();
 
 		Vector3d camPos = getCameraPos();
-		Vector3d blockPos = getCameraBlockPos();
+		BlockPos blockPos = getCameraBlockPos();
 
-		int regionX = (int) blockPos.getX();
-		regionX = (regionX>> 9) * 512;
-		int regionZ = (int) blockPos.getZ();
-		regionZ = (regionZ>> 9) * 512;
+		int regionX = (blockPos.getX() >> 9) * 512;
+		int regionZ = (blockPos.getZ() >> 9) * 512;
+
+		GL11.glTranslated(regionX - camPos.x, -camPos.y, regionZ - camPos.z);
+	}
+
+	public static void applyRegionalRenderOffset(Chunk chunk)
+	{
+		applyCameraRotationOnly();
+
+		Vector3d camPos = getCameraPos();
+
+		int regionX = (chunk.getPos().getXStart() >> 9) * 512;
+		int regionZ = (chunk.getPos().getZStart() >> 9) * 512;
 
 		GL11.glTranslated(regionX - camPos.x, -camPos.y, regionZ - camPos.z);
 	}
@@ -71,9 +82,9 @@ public enum RenderUtils
 		return TileEntityRendererDispatcher.instance.renderInfo.getProjectedView();
 	}
 
-	public static Vector3d getCameraBlockPos()
+	public static BlockPos getCameraBlockPos()
 	{
-		return WurstClient.MC.player.getLookVec();
+		return TileEntityRendererDispatcher.instance.renderInfo.getBlockPos();
 	}
 	
 	public static void drawSolidBox(Vector3d targetBox)

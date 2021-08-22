@@ -88,7 +88,8 @@ public abstract class GameMenuScreenMixin extends Screen
 	{
 		if(!WurstClient.INSTANCE.isEnabled())
 			return;
-		
+
+		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -108,5 +109,7 @@ public abstract class GameMenuScreenMixin extends Screen
 		float u = 0;
 		float v = 0;
 		blit(matrixStack, x, y, u, v, w, h, fw, fh);
+
+		GL11.glPopAttrib();
 	}
 }

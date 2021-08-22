@@ -73,8 +73,6 @@ public final class MobEspHack extends Hack implements UpdateListener,
 		mobBox = GL11.glGenLists(1);
 		GL11.glNewList(mobBox, GL11.GL_COMPILE);
 		AxisAlignedBB bb = new AxisAlignedBB(-0.5, 0, -0.5, 0.5, 1, 0.5);
-		MC.player.sendChatMessage(String.valueOf(bb));
-		//Box bb = new Box(-0.5, 0, -0.5, 0.5, 1, 0.5);
 		RenderUtils.drawOutlinedBox(bb);
 		GL11.glEndList();
 	}
@@ -95,12 +93,10 @@ public final class MobEspHack extends Hack implements UpdateListener,
 	{
 		mobs.clear();
 
-		Stream<Entity> stream =
-			StreamSupport.stream(MC.world.getAllEntities().spliterator(), false)
-				.filter(e -> e != null && !e.removed).filter(
-					e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0)
-					.filter(e -> e != MC.player)
-					.filter(e -> !(e instanceof FakePlayerEntity));
+		Stream<MobEntity> stream =
+				StreamSupport.stream(MC.world.getAllEntities().spliterator(), false)
+						.filter(e -> e instanceof MobEntity).map(e -> (MobEntity)e)
+						.filter(e -> !e.removed && e.getHealth() > 0);
 		
 		if(filterInvisible.isChecked())
 			stream = stream.filter(e -> !e.isInvisible());
@@ -130,15 +126,11 @@ public final class MobEspHack extends Hack implements UpdateListener,
 		
 		GL11.glPushMatrix();
 		RenderUtils.applyRegionalRenderOffset();
-		RenderUtils.applyRenderOffset();
-		
-		Vector3d camPos = RenderUtils.getCameraPos();
-		//int regionX = camPos.getX() >> 9 * 512;
-		//int regionZ = camPos.getZ() >> 9)* 512;
-		int regionX = (int) camPos.getX();
-		regionX = (regionX>> 9) * 512;
-		int regionZ = (int) camPos.getZ();
-		regionZ = (regionZ>> 9) * 512;
+
+
+		BlockPos camPos = RenderUtils.getCameraBlockPos();
+		int regionX = (camPos.getX() >> 9) * 512;
+		int regionZ = (camPos.getZ() >> 9) * 512;
 		
 		if(style.getSelected().boxes)
 			renderBoxes(partialTicks, regionX, regionZ);
@@ -192,7 +184,7 @@ public final class MobEspHack extends Hack implements UpdateListener,
 			Vector3d end = e.getBoundingBox().getCenter()
 				.subtract(new Vector3d(e.getPosX(), e.getPosY(), e.getPosZ())
 					.subtract(e.lastTickPosX, e.lastTickPosY, e.lastTickPosZ)
-					.mul(1 - partialTicks, 1 - partialTicks,1 - partialTicks));
+					.scale(1 - partialTicks));
 			
 			float f = MC.player.getDistance(e) / 20F;
 			GL11.glColor4f(2 - f, f, 0, 0.5F);

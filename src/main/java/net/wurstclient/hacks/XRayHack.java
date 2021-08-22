@@ -9,6 +9,7 @@ package net.wurstclient.hacks;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraftforge.fml.ModList;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.clickgui.screens.EditBlockListScreen;
@@ -21,6 +22,7 @@ import net.wurstclient.events.SetOpaqueCubeListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.BlockListSetting;
 import net.wurstclient.util.BlockUtils;
+import net.wurstclient.util.ChatUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,18 +55,28 @@ public final class XRayHack extends Hack implements UpdateListener,
 		"minecraft:water");
 	
 	private ArrayList<String> oreNames;
-	
+
+	private final String warning;
+
+	private final String renderName =
+			Math.random() < 0.01 ? "X-Wurst" : getName();
+
 	public XRayHack()
 	{
 		super("X-Ray", "Allows you to see ores through walls.");
 		setCategory(Category.RENDER);
 		addSetting(ores);
+
+		if(ModList.get().isLoaded("optifine"))
+			warning = "OptiFine is installed. X-Ray will not work properly!";
+		else
+			warning = null;
 	}
 	
 	@Override
 	public String getRenderName()
 	{
-		return "X-Wurst";
+		return renderName;
 	}
 	
 	@Override
@@ -79,6 +91,9 @@ public final class XRayHack extends Hack implements UpdateListener,
 		EVENTS.add(TesselateBlockListener.class, this);
 		EVENTS.add(RenderBlockEntityListener.class, this);
 		MC.worldRenderer.loadRenderers();
+
+		if(warning != null)
+			ChatUtils.warning(warning);
 	}
 	
 	@Override
