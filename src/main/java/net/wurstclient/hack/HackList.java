@@ -54,6 +54,9 @@ public final class HackList implements UpdateListener
 	public final MobEspHack mobEspHack = new MobEspHack();
 	public final NoBackgroundHack noBackgroundHack = new NoBackgroundHack();
 
+	public final TriggerBotHack triggerBotHack = new TriggerBotHack();
+	public final BoatFlyHack boatFlyHack = new BoatFlyHack();
+	public final PanicHack panicHack = new PanicHack();
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
 	public final AntiBlindHack antiBlindHack = new AntiBlindHack();
@@ -85,7 +88,6 @@ public final class HackList implements UpdateListener
 	public final AutoWalkHack autoWalkHack = new AutoWalkHack();
 	public final BaseFinderHack baseFinderHack = new BaseFinderHack();
 	public final BlinkHack blinkHack = new BlinkHack();
-	public final BoatFlyHack boatFlyHack = new BoatFlyHack();
 	public final BonemealAuraHack bonemealAuraHack = new BonemealAuraHack();
 	public final BuildRandomHack buildRandomHack = new BuildRandomHack();
 	public final CameraNoClipHack cameraNoClipHack = new CameraNoClipHack();
@@ -153,7 +155,6 @@ public final class HackList implements UpdateListener
 	public final NukerLegitHack nukerLegitHack = new NukerLegitHack();
 	public final OpenWaterEspHack openWaterEspHack = new OpenWaterEspHack();
 	public final OverlayHack overlayHack = new OverlayHack();
-	public final PanicHack panicHack = new PanicHack();
 	public final ParkourHack parkourHack = new ParkourHack();
 	public final PlayerEspHack playerEspHack = new PlayerEspHack();
 	public final PlayerFinderHack playerFinderHack = new PlayerFinderHack();
@@ -181,7 +182,6 @@ public final class HackList implements UpdateListener
 	/*
 	public final TpAuraHack tpAuraHack = new TpAuraHack();
 	public final TrajectoriesHack trajectoriesHack = new TrajectoriesHack();
-	public final TriggerBotHack triggerBotHack = new TriggerBotHack();
 	public final TrollPotionHack trollPotionHack = new TrollPotionHack();
 	public final TrueSightHack trueSightHack = new TrueSightHack();
 	public final TunnellerHack tunnellerHack = new TunnellerHack();
