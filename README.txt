@@ -10,6 +10,9 @@ NoFall
 Freecam
 Flight
 BunnyHop
+TriggerBot
+BoatFly
+Panic
 BowAimbot - With Enhancements (Toggle to target entities even if they are behind a wall - "Target Visable")
 
 
