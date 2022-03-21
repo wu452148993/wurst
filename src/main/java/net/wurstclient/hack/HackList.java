@@ -57,9 +57,12 @@ public final class HackList implements UpdateListener
 	public final TriggerBotHack triggerBotHack = new TriggerBotHack();
 	public final BoatFlyHack boatFlyHack = new BoatFlyHack();
 	public final PanicHack panicHack = new PanicHack();
+	public final CriticalsHack criticalsHack = new CriticalsHack();
+
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
 	public final AntiBlindHack antiBlindHack = new AntiBlindHack();
+	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final AntiCactusHack antiCactusHack = new AntiCactusHack();
 	public final AntiKnockbackHack antiKnockbackHack = new AntiKnockbackHack();
 	public final AntiSpamHack antiSpamHack = new AntiSpamHack();
@@ -69,7 +72,6 @@ public final class HackList implements UpdateListener
 	public final AutoBuildHack autoBuildHack = new AutoBuildHack();
 	public final AutoDropHack autoDropHack = new AutoDropHack();
 	public final AutoLeaveHack autoLeaveHack = new AutoLeaveHack();
-	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final AutoFarmHack autoFarmHack = new AutoFarmHack();
 	public final AutoFishHack autoFishHack = new AutoFishHack();
 	public final AutoMineHack autoMineHack = new AutoMineHack();
@@ -100,7 +102,6 @@ public final class HackList implements UpdateListener
 
 	/*
 	public final CrashChestHack crashChestHack = new CrashChestHack();
-	public final CriticalsHack criticalsHack = new CriticalsHack();
 	public final DerpHack derpHack = new DerpHack();
 	public final DolphinHack dolphinHack = new DolphinHack();
 	public final ExcavatorHack excavatorHack = new ExcavatorHack();

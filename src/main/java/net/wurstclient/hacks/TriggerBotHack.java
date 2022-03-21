@@ -9,6 +9,7 @@ package net.wurstclient.hacks;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -17,8 +18,6 @@ import net.wurstclient.SearchTags;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.CheckboxSetting;
-import net.wurstclient.settings.SliderSetting;
-import net.wurstclient.settings.SliderSetting.ValueDisplay;
 
 @SearchTags({"trigger bot", "auto attack"})
 public final class TriggerBotHack extends Hack
@@ -50,22 +49,23 @@ public final class TriggerBotHack extends Hack
 
     @Override
     public void onUpdate() {
-        Minecraft mc = Minecraft.getInstance();
 
-        if (mc.player != null && mc.player.getCooledAttackStrength(0) >= 1) {
-            if (mc.objectMouseOver instanceof EntityRayTraceResult) {
-                Entity entity = ((EntityRayTraceResult) mc.objectMouseOver).getEntity();
+        if (MC.player.getCooledAttackStrength(0) >= 1) {
+            if (MC.objectMouseOver instanceof EntityRayTraceResult) {
+                Entity entity = ((EntityRayTraceResult) MC.objectMouseOver).getEntity();
                 if (isCorrectEntity(entity)) {
-                    mc.playerController.attackEntity(mc.player, entity);
+                    MC.playerController.attackEntity(MC.player, entity);
                 }
             }
         }
     }
 
     private boolean isCorrectEntity(Entity entity) {
-        if (filterPets.isChecked() && entity instanceof TameableEntity && ((TameableEntity) entity).getOwnerId() != null)
-            return false;
-        if (filterPlayers.isChecked() && entity instanceof PlayerEntity) return false;
-        return true;
+        if (entity instanceof LivingEntity) {
+            if (filterPets.isChecked() && entity instanceof TameableEntity && ((TameableEntity) entity).getOwnerId() != null)
+                return false;
+            if (filterPlayers.isChecked() && entity instanceof PlayerEntity) return false;
+            return true;
+        } else return false;
     }
 }

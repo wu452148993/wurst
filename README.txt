@@ -11,15 +11,16 @@ Freecam
 Flight
 BunnyHop
 TriggerBot
-BoatFly
 Panic
 BowAimbot - With Enhancements (Toggle to target entities even if they are behind a wall - "Target Visable")
+Criticals (only Packet Mode can work)
 
 
 Implemented but not working:
 Reach
 MobESP
-
+BoatFly
+AutoEat - Will crash
 
 TODO:
  - Remove Endermen from BowAimbot targeting (Can't be hit by arrows)

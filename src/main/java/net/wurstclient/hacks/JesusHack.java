@@ -7,18 +7,29 @@
  */
 package net.wurstclient.hacks;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.fluid.Fluid;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
+import net.wurstclient.settings.CheckboxSetting;
 
-@SearchTags({"BoatFlight", "boat fly", "boat flight"})
-public final class BoatFlyHack extends Hack implements UpdateListener {
-    public BoatFlyHack() {
-        super("BoatFly", "Allow your boat or horse fly.");
+@SearchTags({"WaterWalking", "water walking"})
+public final class JesusHack extends Hack
+        implements UpdateListener {
+    private final CheckboxSetting bypass =
+            new CheckboxSetting("NoCheat+ bypass",
+                    "Bypasses NoCheat+ but slows down your movement.", false);
+
+    private int tickTimer = 10;
+    private int packetTimer = 0;
+
+    public JesusHack() {
+        super("Jesus", "");
         setCategory(Category.MOVEMENT);
+        addSetting(bypass);
     }
 
     @Override
@@ -33,14 +44,7 @@ public final class BoatFlyHack extends Hack implements UpdateListener {
 
     @Override
     public void onUpdate() {
-        // check if in boat
-        if (!MC.player.isRowingBoat() || !MC.player.isRidingHorse()) {
-            return;
-        }
 
-        // fly
-        Entity vehicle = MC.player.getRidingEntity();
-        double motionY = MC.gameSettings.keyBindJump.isKeyDown() ? 0.3 : 0;
-        vehicle.setMotion(vehicle.getMotion().getX(), motionY, vehicle.getMotion().getZ());
     }
+
 }
