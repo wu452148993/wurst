@@ -37,7 +37,8 @@ public final class FlightHack extends Hack
 	public void onEnable()
 	{
 		WURST.getHax().jetpackHack.setEnabled(false);
-		
+		WURST.getHax().glideHack.setEnabled(false);
+
 		EVENTS.add(UpdateListener.class, this);
 		EVENTS.add(IsPlayerInWaterListener.class, this);
 	}

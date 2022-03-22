@@ -12,6 +12,8 @@ Flight
 BunnyHop
 TriggerBot
 Panic
+Glide
+AntiKnockBack
 BowAimbot - With Enhancements (Toggle to target entities even if they are behind a wall - "Target Visable")
 Criticals (only Packet Mode can work)
 

@@ -41,6 +41,6 @@ public final class BoatFlyHack extends Hack implements UpdateListener {
         // fly
         Entity vehicle = MC.player.getRidingEntity();
         double motionY = MC.gameSettings.keyBindJump.isKeyDown() ? 0.3 : 0;
-        vehicle.setMotion(vehicle.getMotion().getX(), motionY, vehicle.getMotion().getZ());
+        vehicle.setVelocity(vehicle.getMotion().getX(), motionY, vehicle.getMotion().getZ());
     }
 }

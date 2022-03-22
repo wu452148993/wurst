@@ -54,17 +54,19 @@ public final class HackList implements UpdateListener
 	public final MobEspHack mobEspHack = new MobEspHack();
 	public final NoBackgroundHack noBackgroundHack = new NoBackgroundHack();
 
+	public final GlideHack glideHack = new GlideHack();
 	public final TriggerBotHack triggerBotHack = new TriggerBotHack();
 	public final BoatFlyHack boatFlyHack = new BoatFlyHack();
 	public final PanicHack panicHack = new PanicHack();
 	public final CriticalsHack criticalsHack = new CriticalsHack();
+	public final AntiKnockbackHack antiKnockbackHack = new AntiKnockbackHack();
+	public final AutoWalkHack autoWalkHack = new AutoWalkHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
 	public final AntiBlindHack antiBlindHack = new AntiBlindHack();
 	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final AntiCactusHack antiCactusHack = new AntiCactusHack();
-	public final AntiKnockbackHack antiKnockbackHack = new AntiKnockbackHack();
 	public final AntiSpamHack antiSpamHack = new AntiSpamHack();
 	public final AntiWaterPushHack antiWaterPushHack = new AntiWaterPushHack();
 	public final AntiWobbleHack antiWobbleHack = new AntiWobbleHack();
@@ -87,7 +89,6 @@ public final class HackList implements UpdateListener
 	public final AutoSwordHack autoSwordHack = new AutoSwordHack();
 	public final AutoToolHack autoToolHack = new AutoToolHack();
 	public final AutoTotemHack autoTotemHack = new AutoTotemHack();
-	public final AutoWalkHack autoWalkHack = new AutoWalkHack();
 	public final BaseFinderHack baseFinderHack = new BaseFinderHack();
 	public final BlinkHack blinkHack = new BlinkHack();
 	public final BonemealAuraHack bonemealAuraHack = new BonemealAuraHack();
@@ -122,7 +123,6 @@ public final class HackList implements UpdateListener
 	*/
 
 	/*
-	public final GlideHack glideHack = new GlideHack();
 	public final HeadRollHack headRollHack = new HeadRollHack();
 	public final HealthTagsHack healthTagsHack = new HealthTagsHack();
 

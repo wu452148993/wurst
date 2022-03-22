@@ -15,10 +15,12 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.Foods;
 import net.minecraft.item.Item;
+import net.minecraft.network.play.client.CPlayerTryUseItemPacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.datafix.fixes.BlockEntityUUID;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -104,8 +106,7 @@ public final class AutoEatHack extends Hack implements UpdateListener {
         MC.player.inventory.currentItem = bestSlot;
 
         // eat food
-        MC.gameSettings.keyBindUseItem.setPressed(true);
-        IMC.getInteractionManager().rightClickItem();
+        MC.player.connection.sendPacket(new CPlayerTryUseItemPacket(Hand.MAIN_HAND));
     }
 
     private int getBestSlot() {
