@@ -63,11 +63,12 @@ public final class HackList implements UpdateListener
 	public final AutoWalkHack autoWalkHack = new AutoWalkHack();
 	public final TpAuraHack tpAuraHack = new TpAuraHack();
 	public final MultiAuraHack multiAuraHack = new MultiAuraHack();
+	public final JesusHack jesusHack = new JesusHack();
+	public final AutoEatHack autoEatHack = new AutoEatHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
 	public final AntiBlindHack antiBlindHack = new AntiBlindHack();
-	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final AntiCactusHack antiCactusHack = new AntiCactusHack();
 	public final AntiSpamHack antiSpamHack = new AntiSpamHack();
 	public final AntiWaterPushHack antiWaterPushHack = new AntiWaterPushHack();
@@ -131,7 +132,6 @@ public final class HackList implements UpdateListener
 	public final InstantBunkerHack instantBunkerHack = new InstantBunkerHack();
 	public final ItemEspHack itemEspHack = new ItemEspHack();
 	public final ItemGeneratorHack itemGeneratorHack = new ItemGeneratorHack();
-	public final JesusHack jesusHack = new JesusHack();
 
 	public final KaboomHack kaboomHack = new KaboomHack();
 	public final KillauraLegitHack killauraLegitHack = new KillauraLegitHack();

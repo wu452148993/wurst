@@ -162,7 +162,7 @@ public final class MultiAuraHack extends Hack implements UpdateListener
         timer += 50;
 
         // check timer / cooldown
-        if(useCooldown.isChecked() ? player.getCooldownPeriod() < 1
+        if(useCooldown.isChecked() ? player.getCooledAttackStrength(0) < 1
                 : timer < 1000 / speed.getValue())
             return;
 
