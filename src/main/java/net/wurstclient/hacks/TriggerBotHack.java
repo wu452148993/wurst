@@ -39,6 +39,8 @@ public final class TriggerBotHack extends Hack
 
     @Override
     public void onEnable() {
+        WURST.getHax().tpAuraHack.setEnabled(false);
+        WURST.getHax().multiAuraHack.setEnabled(false);
         EVENTS.add(UpdateListener.class, this);
     }
 

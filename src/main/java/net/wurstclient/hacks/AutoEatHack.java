@@ -26,6 +26,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.ITextComponent;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.events.UpdateListener;
@@ -234,5 +235,8 @@ public final class AutoEatHack extends Hack implements UpdateListener {
         public String toString() {
             return name;
         }
+    }
+    private void bp(String a) {
+        MC.ingameGUI.getChatGUI().printChatMessage(ITextComponent.getTextComponentOrEmpty(a));
     }
 }

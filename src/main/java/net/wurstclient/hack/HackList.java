@@ -61,6 +61,8 @@ public final class HackList implements UpdateListener
 	public final CriticalsHack criticalsHack = new CriticalsHack();
 	public final AntiKnockbackHack antiKnockbackHack = new AntiKnockbackHack();
 	public final AutoWalkHack autoWalkHack = new AutoWalkHack();
+	public final TpAuraHack tpAuraHack = new TpAuraHack();
+	public final MultiAuraHack multiAuraHack = new MultiAuraHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -139,7 +141,6 @@ public final class HackList implements UpdateListener
 	public final LsdHack lsdHack = new LsdHack();
 	public final MassTpaHack massTpaHack = new MassTpaHack();
 	public final MobSpawnEspHack mobSpawnEspHack = new MobSpawnEspHack();
-	public final MultiAuraHack multiAuraHack = new MultiAuraHack();
 	public final NameProtectHack nameProtectHack = new NameProtectHack();
 	public final NameTagsHack nameTagsHack = new NameTagsHack();
 	*/
@@ -181,7 +182,6 @@ public final class HackList implements UpdateListener
 	*/
 
 	/*
-	public final TpAuraHack tpAuraHack = new TpAuraHack();
 	public final TrajectoriesHack trajectoriesHack = new TrajectoriesHack();
 	public final TrollPotionHack trollPotionHack = new TrollPotionHack();
 	public final TrueSightHack trueSightHack = new TrueSightHack();
