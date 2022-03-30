@@ -106,6 +106,10 @@ public final class MultiAuraHack extends Hack implements UpdateListener
     private final CheckboxSetting filterCrystals = new CheckboxSetting(
             "Filter end crystals", "Won't attack end crystals.", false);
 
+    private final CheckboxSetting filterNotAlive = new CheckboxSetting(
+            "Filter Not Alive", "if not check will attack all entity.\n"
+            + "(include entity like minecart)", true);
+
     private int timer;
 
     public MultiAuraHack()
@@ -118,6 +122,7 @@ public final class MultiAuraHack extends Hack implements UpdateListener
         addSetting(range);
         addSetting(fov);
 
+        addSetting(filterNotAlive);
         addSetting(filterPlayers);
         addSetting(filterSleeping);
         addSetting(filterFlying);
@@ -170,14 +175,16 @@ public final class MultiAuraHack extends Hack implements UpdateListener
         double rangeSq = Math.pow(range.getValue(), 2);
         Stream<Entity> stream =
                 StreamSupport.stream(world.getAllEntities().spliterator(), true)
-//I DO NOT KNOW IT                        .filter(e -> !e.isRemoved())
-                        .filter(e -> e instanceof LivingEntity
-                                && ((LivingEntity)e).getHealth() > 0
-                                || e instanceof EnderCrystalEntity)
+                        .filter(e -> !e.removed)
                         .filter(e -> player.getDistanceSq(e) <= rangeSq)
                         .filter(e -> e != player)
                         .filter(e -> !(e instanceof FakePlayerEntity));
 //TODO                        .filter(e -> !WURST.getFriends().contains(e.getEntityName()));
+
+        if(filterNotAlive.isChecked())
+            stream = stream.filter(e -> e instanceof LivingEntity
+                    && ((LivingEntity)e).getHealth() > 0
+                    || e instanceof EnderCrystalEntity);
 
         if(fov.getValue() < 360.0)
             stream = stream.filter(e -> RotationUtils.getAngleToLookVec(

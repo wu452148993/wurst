@@ -19,7 +19,7 @@ public final class AutoWalkHack extends Hack implements UpdateListener
 {
     public AutoWalkHack()
     {
-        super("AutoWalk","");
+        super("AutoWalk","Makes you walk automatically.");
         setCategory(Category.MOVEMENT);
     }
 
@@ -35,7 +35,7 @@ public final class AutoWalkHack extends Hack implements UpdateListener
         EVENTS.remove(UpdateListener.class, this);
 
         KeyBinding forwardKey = MC.gameSettings.keyBindForward;
-        forwardKey.setPressed(((IKeyBinding)forwardKey).isActallyPressed());
+        forwardKey.setPressed(forwardKey.isKeyDown());
     }
 
     @Override

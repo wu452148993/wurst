@@ -5,7 +5,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package net.wurstclient.hacks;
+package net.wurstclient.addhacks;
 
 import java.util.Comparator;
 import java.util.Random;
@@ -44,12 +44,15 @@ import net.wurstclient.settings.SliderSetting.ValueDisplay;
 import net.wurstclient.util.FakePlayerEntity;
 import net.wurstclient.util.RotationUtils;
 
-@SearchTags({"TpAura", "tp aura", "EnderAura", "Ender-Aura", "ender aura"})
-public final class TpAuraHack extends Hack implements UpdateListener {
+@SearchTags({"Head"})
+public final class HeadHack extends Hack implements UpdateListener {
     private Random random = new Random();
 
     private final SliderSetting range =
             new SliderSetting("Range", 4.25, 1, 6, 0.05, ValueDisplay.DECIMAL);
+
+    private final SliderSetting high =
+            new SliderSetting("high", 1, 0, 6, 0.05, ValueDisplay.DECIMAL);
 
     private final EnumSetting<Priority> priority = new EnumSetting<>("Priority",
             "Determines which entity will be attacked first.\n"
@@ -101,16 +104,24 @@ public final class TpAuraHack extends Hack implements UpdateListener {
 
     private final CheckboxSetting filterStands = new CheckboxSetting(
             "Filter armor stands", "Won't attack armor stands.", false);
+
     private final CheckboxSetting filterCrystals = new CheckboxSetting(
             "Filter end crystals", "Won't attack end crystals.", false);
 
-    public TpAuraHack() {
-        super("TP-Aura", "Automatically attacks the closest valid entity while teleporting around it.");
+    private final CheckboxSetting filterNotAlive = new CheckboxSetting(
+            "Filter Not Alive", "if not check will attack all entity.\n"
+            + "(include entity like minecart)", true);
+
+    public HeadHack() {
+        super("Head", "Teleport you above the closest entity");
         setCategory(Category.COMBAT);
+
+        addSetting(high);
 
         addSetting(range);
         addSetting(priority);
 
+        addSetting(filterNotAlive);
         addSetting(filterPlayers);
         addSetting(filterSleeping);
         addSetting(filterFlying);
@@ -130,9 +141,6 @@ public final class TpAuraHack extends Hack implements UpdateListener {
 
     @Override
     public void onEnable() {
-        // disable other killauras
-        WURST.getHax().triggerBotHack.setEnabled(false);
-        WURST.getHax().multiAuraHack.setEnabled(false);
 
         EVENTS.add(UpdateListener.class, this);
     }
@@ -158,6 +166,11 @@ public final class TpAuraHack extends Hack implements UpdateListener {
                         .filter(e -> !(e instanceof FakePlayerEntity));
 //TODO                        .filter(e -> !WURST.getFriends().contains(e.getName()));
 
+        if(filterNotAlive.isChecked())
+            stream = stream.filter(e -> e instanceof LivingEntity
+                    && ((LivingEntity)e).getHealth() > 0
+                    || e instanceof EnderCrystalEntity);
+
         if (filterPlayers.isChecked())
             stream = stream.filter(e -> !(e instanceof PlayerEntity));
 
@@ -176,7 +189,7 @@ public final class TpAuraHack extends Hack implements UpdateListener {
 
         if (filterAnimals.isChecked())
             stream = stream.filter(
-                    e -> !(e instanceof AnimalEntity || e instanceof AmbientEntity));
+                    e -> !(e instanceof AnimalEntity || e instanceof AmbientEntity ));
 //TODO Fliter WaterCreatureEntity
 
 /*TODO Fliter Baby
@@ -211,33 +224,13 @@ public final class TpAuraHack extends Hack implements UpdateListener {
 
         Entity entity =
                 stream.min(priority.getSelected().comparator).orElse(null);
+
         if (entity == null)
             return;
 
-
         // teleport
-        if (WURST.getHax().headHack.isEnabled()) {
-            player.setPosition(entity.getPosX() + random.nextInt(3) * 2 - 2,
-                    MC.player.getPosY(), entity.getPosZ() + random.nextInt(3) * 2 - 2);
-        } else {
-            player.setPosition(entity.getPosX() + random.nextInt(3) * 2 - 2,
-                    entity.getPosY(), entity.getPosZ() + random.nextInt(3) * 2 - 2);
-        }
-
-        // check cooldown
-        if (player.getCooledAttackStrength(0) < 1)
-            return;
-
-        // attack entity
-        RotationUtils.Rotation rotations = RotationUtils
-                .getNeededRotations(entity.getBoundingBox().getCenter());
-        WurstClient.MC.player.connection.sendPacket(
-                new CPlayerPacket.RotationPacket(rotations.getYaw(),
-                        rotations.getPitch(), MC.player.isOnGround()));
-
-        WURST.getHax().criticalsHack.doCritical();
-        MC.playerController.attackEntity(player, entity);
-        player.swing(Hand.MAIN_HAND, true);
+        player.setPosition(entity.getPosX(),
+                entity.getPosY() + high.getValue(), entity.getPosZ());
     }
 
     private enum Priority {

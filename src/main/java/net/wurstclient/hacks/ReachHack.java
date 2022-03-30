@@ -7,14 +7,19 @@
  */
 package net.wurstclient.hacks;
 
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.network.play.client.CPlayerPacket;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.world.BlockEvent;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
+import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
 
 @SearchTags({"range"})
-public final class ReachHack extends Hack
+public final class ReachHack extends Hack implements UpdateListener
 {
 	private final SliderSetting range =
 			new SliderSetting("Range", 6, 1, 10, 0.05, ValueDisplay.DECIMAL);
@@ -26,8 +31,23 @@ public final class ReachHack extends Hack
 		addSetting(range);
 	}
 
-	public float getReachDistance()
+	@Override
+	public void onEnable()
 	{
-		return range.getValueF();
+		EVENTS.add(UpdateListener.class, this);
 	}
+
+	@Override
+	public void onDisable()
+	{
+		EVENTS.remove(UpdateListener.class, this);
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		MC.player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(range.getValue());
+
+	}
+
 }

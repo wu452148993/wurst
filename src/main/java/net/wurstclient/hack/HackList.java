@@ -21,6 +21,9 @@ import java.util.stream.Stream;
 import net.minecraft.crash.ReportedException;//util.crash.CrashException;
 import net.minecraft.crash.CrashReport;//util.crash.CrashReport;
 import net.wurstclient.WurstClient;
+import net.wurstclient.addhacks.AutoUseOffHandItemHack;
+import net.wurstclient.addhacks.DeadPointHack;
+import net.wurstclient.addhacks.HeadHack;
 import net.wurstclient.event.EventManager;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hacks.*;
@@ -65,6 +68,7 @@ public final class HackList implements UpdateListener
 	public final MultiAuraHack multiAuraHack = new MultiAuraHack();
 	public final JesusHack jesusHack = new JesusHack();
 	public final AutoEatHack autoEatHack = new AutoEatHack();
+	public final ItemEspHack itemEspHack = new ItemEspHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -123,14 +127,10 @@ public final class HackList implements UpdateListener
 	public final FollowHack followHack = new FollowHack();
 	public final ForceOpHack forceOpHack = new ForceOpHack();
 
-	*/
-
-	/*
 	public final HeadRollHack headRollHack = new HeadRollHack();
 	public final HealthTagsHack healthTagsHack = new HealthTagsHack();
 
 	public final InstantBunkerHack instantBunkerHack = new InstantBunkerHack();
-	public final ItemEspHack itemEspHack = new ItemEspHack();
 	public final ItemGeneratorHack itemGeneratorHack = new ItemGeneratorHack();
 
 	public final KaboomHack kaboomHack = new KaboomHack();
@@ -188,6 +188,10 @@ public final class HackList implements UpdateListener
 	public final TunnellerHack tunnellerHack = new TunnellerHack();
 
 	*/
+
+	public final AutoUseOffHandItemHack autoUseOffHandItemHack = new AutoUseOffHandItemHack();
+	public final HeadHack headHack = new HeadHack();
+	public final DeadPointHack deadPointHack = new DeadPointHack();
 
 	private final TreeMap<String, Hack> hax =
 		new TreeMap<>(String::compareToIgnoreCase);

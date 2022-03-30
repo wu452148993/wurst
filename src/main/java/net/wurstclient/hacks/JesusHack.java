@@ -149,7 +149,6 @@ public final class JesusHack extends Hack
     public boolean isOverLiquid() {
         boolean foundLiquid = false;
         boolean foundSolid = false;
-        // something in IMC
 
         // check collision boxes below player
         ArrayList<AxisAlignedBB> blockCollisions = MC.world.getBlockCollisionShapes(MC.player,
