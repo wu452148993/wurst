@@ -69,6 +69,7 @@ public final class HackList implements UpdateListener
 	public final JesusHack jesusHack = new JesusHack();
 	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final ItemEspHack itemEspHack = new ItemEspHack();
+	public final PlayerEspHack playerEspHack = new PlayerEspHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -158,7 +159,6 @@ public final class HackList implements UpdateListener
 	public final OpenWaterEspHack openWaterEspHack = new OpenWaterEspHack();
 	public final OverlayHack overlayHack = new OverlayHack();
 	public final ParkourHack parkourHack = new ParkourHack();
-	public final PlayerEspHack playerEspHack = new PlayerEspHack();
 	public final PlayerFinderHack playerFinderHack = new PlayerFinderHack();
 	public final PotionSaverHack potionSaverHack = new PotionSaverHack();
 	public final ProphuntEspHack prophuntEspHack = new ProphuntEspHack();

@@ -155,8 +155,8 @@ public final class TpAuraHack extends Hack implements UpdateListener {
                                 || e instanceof EnderCrystalEntity)
                         .filter(e -> player.getDistanceSq(e) <= rangeSq)
                         .filter(e -> e != player)
-                        .filter(e -> !(e instanceof FakePlayerEntity));
-//TODO                        .filter(e -> !WURST.getFriends().contains(e.getName()));
+                        .filter(e -> !(e instanceof FakePlayerEntity))
+                        .filter(e -> !WURST.getFriends().contains(e.getName().getString()));
 
         if (filterPlayers.isChecked())
             stream = stream.filter(e -> !(e instanceof PlayerEntity));

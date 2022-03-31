@@ -178,8 +178,8 @@ public final class MultiAuraHack extends Hack implements UpdateListener
                         .filter(e -> !e.removed)
                         .filter(e -> player.getDistanceSq(e) <= rangeSq)
                         .filter(e -> e != player)
-                        .filter(e -> !(e instanceof FakePlayerEntity));
-//TODO                        .filter(e -> !WURST.getFriends().contains(e.getEntityName()));
+                        .filter(e -> !(e instanceof FakePlayerEntity))
+                        .filter(e -> !WURST.getFriends().contains(e.getName().getString()));
 
         if(filterNotAlive.isChecked())
             stream = stream.filter(e -> e instanceof LivingEntity
@@ -240,6 +240,7 @@ public final class MultiAuraHack extends Hack implements UpdateListener
 
         if (filterCrystals.isChecked())
             stream = stream.filter(e -> !(e instanceof EnderCrystalEntity));
+
 
         ArrayList<Entity> entities =
                 stream.collect(Collectors.toCollection(ArrayList::new));
