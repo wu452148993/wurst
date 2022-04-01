@@ -19,35 +19,18 @@ import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
 
 @SearchTags({"range"})
-public final class ReachHack extends Hack implements UpdateListener
-{
-	private final SliderSetting range =
-			new SliderSetting("Range", 6, 1, 10, 0.05, ValueDisplay.DECIMAL);
+public final class ReachHack extends Hack {
+    private final SliderSetting range =
+            new SliderSetting("Range", 6, 1, 10, 0.05, ValueDisplay.DECIMAL);
 
-	public ReachHack()
-	{
-		super("Reach", "Allows you to reach further.");
-		setCategory(Category.OTHER);
-		addSetting(range);
-	}
+    public ReachHack() {
+        super("Reach", "Allows you to reach further.");
+        setCategory(Category.OTHER);
+        addSetting(range);
+    }
 
-	@Override
-	public void onEnable()
-	{
-		EVENTS.add(UpdateListener.class, this);
-	}
-
-	@Override
-	public void onDisable()
-	{
-		EVENTS.remove(UpdateListener.class, this);
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		MC.player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(range.getValue());
-
-	}
+    public float getReachDistance() {
+        return range.getValueF();
+    }
 
 }

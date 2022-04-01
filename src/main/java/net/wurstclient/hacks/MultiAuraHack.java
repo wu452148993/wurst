@@ -8,6 +8,7 @@
 package net.wurstclient.hacks;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -56,7 +57,7 @@ public final class MultiAuraHack extends Hack implements UpdateListener
             12, 0.1, 20, 0.1, ValueDisplay.DECIMAL);
 
     private final SliderSetting range =
-            new SliderSetting("Range", 5, 1, 6, 0.05, ValueDisplay.DECIMAL);
+            new SliderSetting("Range", 5, 1, 15, 0.05, ValueDisplay.DECIMAL);
 
     public final SliderSetting fov =
             new SliderSetting("FOV", 360, 30, 360, 10, ValueDisplay.DEGREES);
@@ -179,6 +180,7 @@ public final class MultiAuraHack extends Hack implements UpdateListener
                         .filter(e -> player.getDistanceSq(e) <= rangeSq)
                         .filter(e -> e != player)
                         .filter(e -> !(e instanceof FakePlayerEntity))
+                        .filter(e -> !(Objects.equals(e.getEntityString(), "aoa3:bloodlust"))) //Advent of Ascension 3 BloodLust
                         .filter(e -> !WURST.getFriends().contains(e.getName().getString()));
 
         if(filterNotAlive.isChecked())
@@ -209,9 +211,9 @@ public final class MultiAuraHack extends Hack implements UpdateListener
         if (filterAnimals.isChecked())
             stream = stream.filter(
                     e -> !(e instanceof AnimalEntity || e instanceof AmbientEntity));
-//TODO Fliter WaterCreatureEntity
+//TODO Filter WaterCreatureEntity
 
-/*TODO Fliter Baby
+/*TODO Filter Baby
         if (filterBabies.isChecked())
             stream = stream.filter(e -> !(e instanceof PassiveEntity
                     && ((PassiveEntity) e).isBaby()));*/

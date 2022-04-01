@@ -7,40 +7,32 @@
  */
 package net.wurstclient.hacks;
 
-import net.minecraft.client.settings.KeyBinding;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
-import net.wurstclient.mixinterface.IKeyBinding;
 
-@SearchTags({"auto walk"})
-public final class AutoWalkHack extends Hack implements UpdateListener
-{
-    public AutoWalkHack()
-    {
-        super("AutoWalk","Makes you walk automatically.");
-        setCategory(Category.MOVEMENT);
+@SearchTags({"fast place"})
+public final class FastPlaceHack extends Hack implements UpdateListener {
+    public FastPlaceHack() {
+        super("FastPlace",
+                "Allows you to place blocks 5 times faster.\n" +
+                        "Tip: This can speed up other hacks like AutoBuild.");
+        setCategory(Category.BLOCKS);
     }
 
     @Override
-    public void onEnable()
-    {
+    public void onEnable() {
         EVENTS.add(UpdateListener.class, this);
     }
 
     @Override
-    public void onDisable()
-    {
+    public void onDisable() {
         EVENTS.remove(UpdateListener.class, this);
-
-        KeyBinding forwardKey = MC.gameSettings.keyBindForward;
-        forwardKey.setPressed(false);
     }
 
     @Override
-    public void onUpdate()
-    {
-        MC.gameSettings.keyBindForward.setPressed(true);
+    public void onUpdate() {
+        IMC.setItemUseCooldown(0);
     }
 }

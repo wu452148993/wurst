@@ -70,6 +70,8 @@ public final class HackList implements UpdateListener
 	public final AutoEatHack autoEatHack = new AutoEatHack();
 	public final ItemEspHack itemEspHack = new ItemEspHack();
 	public final PlayerEspHack playerEspHack = new PlayerEspHack();
+	public final FastPlaceHack fastPlaceHack = new FastPlaceHack();
+	public final FastBreakHack fastBreakHack = new FastBreakHack();
 
 	/*
 	public final AntiAfkHack antiAfkHac1k = new AntiAfkHack();
@@ -116,9 +118,7 @@ public final class HackList implements UpdateListener
 	public final ExcavatorHack excavatorHack = new ExcavatorHack();
 	public final ExtraElytraHack extraElytraHack = new ExtraElytraHack();
 	public final FancyChatHack fancyChatHack = new FancyChatHack();
-	public final FastBreakHack fastBreakHack = new FastBreakHack();
 	public final FastLadderHack fastLadderHack = new FastLadderHack();
-	public final FastPlaceHack fastPlaceHack = new FastPlaceHack();
 	public final FeedAuraHack feedAuraHack = new FeedAuraHack();
 	public final FightBotHack fightBotHack = new FightBotHack();
 	public final FishHack fishHack = new FishHack();

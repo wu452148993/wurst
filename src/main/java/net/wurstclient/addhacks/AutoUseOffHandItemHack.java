@@ -7,6 +7,7 @@
  */
 package net.wurstclient.addhacks;
 
+import net.minecraft.item.Food;
 import net.minecraft.network.play.client.CPlayerTryUseItemPacket;
 import net.minecraft.util.Hand;
 import net.wurstclient.Category;
@@ -35,17 +36,21 @@ public final class AutoUseOffHandItemHack extends Hack implements UpdateListener
 
     @Override
     public void onDisable() {
+        MC.gameSettings.keyBindUseItem.setPressed(false);
         EVENTS.remove(UpdateListener.class, this);
     }
 
     @Override
     public void onUpdate() {
-        if(MC.player.inventory.offHandInventory.isEmpty()) {
+
+        //check is food
+        if(!MC.player.inventory.offHandInventory.get(0).isFood()) {
             return;
         }
 
         if (onHungry.isChecked() && MC.player.canEat(false)) {
             MC.gameSettings.keyBindUseItem.setPressed(true);
-        }
+            MC.playerController.processRightClick(MC.player,MC.world,Hand.OFF_HAND);
+        } else MC.gameSettings.keyBindUseItem.setPressed(false);
     }
 }
