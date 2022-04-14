@@ -17,6 +17,8 @@ public enum Category
 	FUN("Fun"),
 	ITEMS("Items"),
 	OTHER("Other");
+
+	//this is something
 	
 	private final String name;
 	

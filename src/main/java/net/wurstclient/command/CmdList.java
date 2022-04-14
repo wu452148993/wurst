@@ -23,6 +23,9 @@ public final class CmdList
 	public final FriendsCmd friendsCmd = new FriendsCmd();
 	public final DupeCmd dupeCmd = new DupeCmd();
 	public final ViewNbtCmd viewNbtCmd = new ViewNbtCmd();
+
+	public final DamageCmd damageCmd = new DamageCmd();
+
 	/*
 	public final AddAltCmd addAltCmd = new AddAltCmd();
 	public final AnnoyCmd annoyCmd = new AnnoyCmd();
@@ -32,7 +35,6 @@ public final class CmdList
 	public final BlinkCmd blinkCmd = new BlinkCmd();
 	public final ClearCmd clearCmd = new ClearCmd();
 	public final CopyItemCmd copyitemCmd = new CopyItemCmd();
-	public final DamageCmd damageCmd = new DamageCmd();
 	public final DigCmd digCmd = new DigCmd();
 	public final DropCmd dropCmd = new DropCmd();
 	public final EnabledHaxCmd enabledHaxCmd = new EnabledHaxCmd();

@@ -7,27 +7,30 @@
  */
 package net.wurstclient.hacks;
 
+import net.minecraft.client.entity.player.ClientPlayerEntity;
+import net.minecraft.network.play.client.CPlayerPacket;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.world.BlockEvent;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
+import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
 
 @SearchTags({"range"})
-public final class ReachHack extends Hack
-{
-	private final SliderSetting range =
-			new SliderSetting("Range", 6, 1, 10, 0.05, ValueDisplay.DECIMAL);
+public final class ReachHack extends Hack {
+    private final SliderSetting range =
+            new SliderSetting("Range", 6, 1, 10, 0.05, ValueDisplay.DECIMAL);
 
-	public ReachHack()
-	{
-		super("Reach", "Allows you to reach further.");
-		setCategory(Category.OTHER);
-		addSetting(range);
-	}
+    public ReachHack() {
+        super("Reach", "Allows you to reach further.");
+        setCategory(Category.OTHER);
+        addSetting(range);
+    }
 
-	public float getReachDistance()
-	{
-		return range.getValueF();
-	}
+    public float getReachDistance() {
+        return range.getValueF();
+    }
+
 }
