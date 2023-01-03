@@ -1,7 +1,7 @@
 package com.example.examplemod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.Items;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,14 +10,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.wurstclient.WurstClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod("examplemod")
+@Mod("wurst")
 public class ExampleMod {
 
     public static final Logger LOGGER = LogManager.getLogger();
-
+    private static boolean initialized;
     public ExampleMod() {
 
         // This is our mod's event bus, used for things like registry or lifecycle events
@@ -33,6 +34,13 @@ public class ExampleMod {
         // we need to register our object like this!
         MinecraftForge.EVENT_BUS.register(this);
 
+        if(initialized)
+            throw new RuntimeException(
+                    "WurstInitializer.onInitialize() ran twice!");
+
+        WurstClient.INSTANCE.initialize();
+        initialized = true;
+
         // For more information on how to deal with events in Forge,
         // like automatically subscribing an entire class to an event bus
         // or using static methods to listen to events,
@@ -45,7 +53,7 @@ public class ExampleMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
+        LOGGER.info("Hey, we're on Minecraft version {}!", MinecraftClient.getInstance().getGameVersion());
     }
 
     @SubscribeEvent
