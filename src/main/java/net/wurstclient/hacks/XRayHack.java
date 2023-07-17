@@ -13,11 +13,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraftforge.fml.ModList;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.clickgui.screens.EditBlockListScreen;
@@ -69,20 +67,14 @@ public final class XRayHack extends Hack implements UpdateListener,
 	
 	private final String renderName =
 		Math.random() < 0.01 ? "X-Wurst" : getName();
-	
+
 	public XRayHack()
 	{
 		super("X-Ray");
 		setCategory(Category.RENDER);
 		addSetting(ores);
-		
-		List<String> mods = FabricLoader.getInstance().getAllMods().stream()
-			.map(ModContainer::getMetadata).map(ModMetadata::getId)
-			.collect(Collectors.toList());
-		
-		Pattern optifine = Pattern.compile("opti(?:fine|fabric).*");
-		
-		if(mods.stream().anyMatch(optifine.asPredicate()))
+
+		if(ModList.get().isLoaded("optifine"))
 			warning = "OptiFine is installed. X-Ray will not work properly!";
 		else
 			warning = null;
