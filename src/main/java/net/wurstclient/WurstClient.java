@@ -17,8 +17,7 @@ import java.util.stream.Stream;
 
 import org.lwjgl.glfw.GLFW;
 
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
@@ -154,7 +153,7 @@ public enum WurstClient
 		
 		zoomKey = new KeyBinding("key.wurst.zoom", InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_V, "Zoom");
-		KeyBindingHelper.registerKeyBinding(zoomKey);
+		new RegisterKeyMappingsEvent(MinecraftClient.getInstance().options).register(zoomKey);
 		
 		analytics.trackPageView("/mc" + MC_VERSION + "/v" + VERSION,
 			"Wurst " + VERSION + " MC" + MC_VERSION);

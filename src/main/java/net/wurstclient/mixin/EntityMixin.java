@@ -29,7 +29,7 @@ public abstract class EntityMixin implements Nameable, CommandOutput
 		target = "Lnet/minecraft/entity/Entity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V",
 		opcode = Opcodes.INVOKEVIRTUAL,
 		ordinal = 0),
-		method = {"updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z"})
+		method = {"lambda$updateFluidHeightAndDoFluidPushing$26(Lnet/minecraftforge/fluids/FluidType;Lorg/apache/commons/lang3/tuple/MutableTriple;)V"})
 	private void setVelocityFromFluid(Entity entity, Vec3d velocity)
 	{
 		VelocityFromFluidEvent event =

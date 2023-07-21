@@ -7,12 +7,16 @@
  */
 package net.wurstclient.mixin;
 
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.block.BlockModelRenderer;
+import net.minecraft.world.BlockRenderView;
+import net.minecraftforge.client.model.data.ModelData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.fabricmc.fabric.impl.client.indigo.renderer.render.TerrainRenderContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
@@ -20,17 +24,19 @@ import net.minecraft.util.math.BlockPos;
 import net.wurstclient.event.EventManager;
 import net.wurstclient.events.TesselateBlockListener.TesselateBlockEvent;
 
-@Mixin(TerrainRenderContext.class)
+
+@Mixin(BlockModelRenderer.class)
 public class TerrainRenderContextMixin
 {
 	@Inject(at = @At("HEAD"),
-		method = "tessellateBlock",
-		cancellable = true,
-		remap = false)
-	private void onTessellateBlock(BlockState blockState, BlockPos blockPos,
-		final BakedModel model, MatrixStack matrixStack, CallbackInfo ci)
+			method = "tesselateBlock(Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/client/render/model/BakedModel;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;ZLnet/minecraft/util/math/random/Random;JILnet/minecraftforge/client/model/data/ModelData;Lnet/minecraft/client/render/RenderLayer;Z)V",
+		cancellable = true)
+	private void onTessellateBlock(BlockRenderView arg, BakedModel arg2, BlockState arg3, BlockPos arg4,
+								   MatrixStack arg5, VertexConsumer arg6, boolean bl,
+								   net.minecraft.util.math.random.Random arg7, long l, int i, ModelData modelData,
+								   RenderLayer renderType, boolean queryModelSpecificData, CallbackInfo ci)
 	{
-		TesselateBlockEvent event = new TesselateBlockEvent(blockState);
+		TesselateBlockEvent event = new TesselateBlockEvent(arg3);
 		EventManager.fire(event);
 		
 		if(event.isCancelled())
