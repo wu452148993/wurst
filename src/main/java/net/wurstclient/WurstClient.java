@@ -42,7 +42,7 @@ import net.wurstclient.keybinds.KeybindList;
 import net.wurstclient.keybinds.KeybindProcessor;
 import net.wurstclient.mixinterface.IMinecraftClient;
 import net.wurstclient.navigator.Navigator;
-import net.wurstclient.nochatreports.NoChatReportsChannelHandler;
+//import net.wurstclient.nochatreports.NoChatReportsChannelHandler;
 import net.wurstclient.other_feature.OtfList;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.SettingsFile;
@@ -318,8 +318,8 @@ public enum WurstClient
 			hax.panicHack.setEnabled(true);
 			hax.panicHack.onUpdate();
 			
-			ClientPlayNetworking
-				.unregisterGlobalReceiver(NoChatReportsChannelHandler.CHANNEL);
+//			ClientPlayNetworking
+//				.unregisterGlobalReceiver(NoChatReportsChannelHandler.CHANNEL);
 		}
 	}
 	
