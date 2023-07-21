@@ -1,30 +1,17 @@
 FORK OF wu452148993's PORT FROM FABRIC TO FORGE
 
-wurst forge 1.16.4
-need people XD
+wurst forge version
 
-Currently working hacks:
-X-Ray
-FullBright
-NoFall
-Freecam
-Flight
-BunnyHop
-BowAimbot - With Enhancements (Toggle to target entities even if they are behind a wall - "Target Visable")
+Through architectury, we can quickly convert fabric mods to forge.
+architectury-templates:https://github.com/architectury/architectury-templates
 
-
-Implemented but not working:
-Reach
-MobESP
+Current completed version:
+ - 1.18.2
+ - 1.19.2
 
 
 TODO:
- - Remove Endermen from BowAimbot targeting (Can't be hit by arrows)
- - Possibly add a distance limit setting for BowAimbot targeting
- - Fix FullBright
- - Fix Reach
- - Fix ESP boxes not drawing
-
+ - Complete more versions
 
 Official website:
 https://www.wurstclient.net
