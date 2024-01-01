@@ -12,12 +12,11 @@ import java.util.Collections;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 import net.wurstclient.Category;
 import net.wurstclient.SearchTags;
 import net.wurstclient.clickgui.screens.EditBlockListScreen;
@@ -196,9 +195,9 @@ public final class XRayHack extends Hack implements UpdateListener,
 	 */
 	private String checkOptiFine()
 	{
-		Stream<String> mods = FabricLoader.getInstance().getAllMods().stream()
-			.map(ModContainer::getMetadata).map(ModMetadata::getId);
-		
+		Stream<String> mods = FMLLoader.getLoadingModList().getMods().stream()
+				.map(ModInfo::getModId);
+
 		Pattern optifine = Pattern.compile("opti(?:fine|fabric).*");
 		
 		if(mods.anyMatch(optifine.asPredicate()))

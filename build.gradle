@@ -47,6 +47,9 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    maven {
+        url "https://maven.su5ed.dev/releases"
+    }
 }
 
 dependencies {
@@ -79,6 +82,8 @@ dependencies {
     // modCompileOnly "mezz.jei:jei-1.20.1:${jei_version}:api"
     // at runtime, use the full JEI jar
     // modRuntimeOnly "mezz.jei:jei-1.20.1:${jei_version}"
+    modCompileOnly "dev.su5ed.sinytra.fabric-api:fabric-api:${project.ffapi_version}"
+    modRuntimeOnly "dev.su5ed.sinytra.fabric-api:fabric-api:${project.ffapi_version}"
 }
 
 processResources {

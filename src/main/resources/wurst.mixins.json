@@ -37,6 +37,7 @@
     "GameRendererMixin",
     "GenericContainerScreenMixin",
     "IngameHudMixin",
+    "ForgeIngameGuiMixin",
     "InGameOverlayRendererMixin",
     "KeyBindingMixin",
     "KeyboardMixin",
@@ -61,7 +62,9 @@
     "TextVisitFactoryMixin",
     "TitleScreenMixin",
     "WorldMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "ToastManagerAccessor",
+    "ClientPlayNetworkHandlerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

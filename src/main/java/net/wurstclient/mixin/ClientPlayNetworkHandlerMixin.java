@@ -7,6 +7,7 @@
  */
 package net.wurstclient.mixin;
 
+import net.minecraft.client.toast.Toast;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,6 +30,8 @@ import net.wurstclient.WurstClient;
 import net.wurstclient.event.EventManager;
 import net.wurstclient.events.PacketOutputListener.PacketOutputEvent;
 import net.wurstclient.util.ChatUtils;
+
+import java.util.Deque;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class ClientPlayNetworkHandlerMixin
@@ -61,8 +64,11 @@ public abstract class ClientPlayNetworkHandlerMixin
 		// Remove Mojang's dishonest warning toast on safe servers
 		if(!packet.isSecureChatEnforced())
 		{
-			client.getToastManager().toastQueue.removeIf(toast -> toast
-				.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING);
+			Deque<Toast> toastQueue = ((ToastManagerAccessor)client.getToastManager()).getToastQueue();
+			toastQueue.removeIf(toast -> toast.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING);
+			((ToastManagerAccessor)client.getToastManager()).setToastQueue(toastQueue);
+//			client.getToastManager().toastQueue.removeIf(toast -> toast
+//				.getType() == SystemToast.Type.UNSECURE_SERVER_WARNING);
 			return;
 		}
 		
