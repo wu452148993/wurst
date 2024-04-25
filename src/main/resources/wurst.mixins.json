@@ -59,7 +59,8 @@
     "TerrainRenderContextMixin",
     "TextVisitFactoryMixin",
     "TitleScreenMixin",
-    "WorldMixin"
+    "WorldMixin",
+    "ForgeIngameGuiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

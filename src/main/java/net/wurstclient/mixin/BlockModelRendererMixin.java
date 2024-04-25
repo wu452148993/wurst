@@ -33,7 +33,8 @@ public abstract class BlockModelRendererMixin
 		method = {
 			"renderSmooth(Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/client/render/model/BakedModel;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;ZLjava/util/Random;JI)Z",
 			"renderFlat(Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/client/render/model/BakedModel;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;ZLjava/util/Random;JI)Z"},
-		cancellable = true)
+		cancellable = true,
+			remap = false)
 	private void onRenderSmoothOrFlat(BlockRenderView blockRenderView_1,
 		BakedModel bakedModel_1, BlockState blockState_1, BlockPos blockPos_1,
 		MatrixStack matrixStack_1, VertexConsumer vertexConsumer_1,
@@ -60,8 +61,8 @@ public abstract class BlockModelRendererMixin
 		renderSmooth(blockRenderView_1, bakedModel_1, blockState_1, blockPos_1,
 			matrixStack_1, vertexConsumer_1, false, random_1, long_1, int_1);
 	}
-	
-	@Shadow
+
+	@Shadow(remap = false)
 	public boolean renderSmooth(BlockRenderView blockRenderView_1,
 		BakedModel bakedModel_1, BlockState blockState_1, BlockPos blockPos_1,
 		MatrixStack matrixStack_1, VertexConsumer vertexConsumer_1,

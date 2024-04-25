@@ -7,7 +7,14 @@
  */
 package net.wurstclient.mixin;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+import net.minecraft.client.gui.widget.ClickableWidget;
+import net.wurstclient.mixinterface.IScreen;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,8 +29,12 @@ import net.wurstclient.WurstClient;
 
 @Mixin(Screen.class)
 public abstract class ScreenMixin extends AbstractParentElement
-	implements TickableElement, Drawable
+	implements TickableElement, Drawable, IScreen
 {
+	@Shadow
+	@Final
+	protected List<ClickableWidget> buttons;
+
 	@Inject(at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/client/network/ClientPlayerEntity;sendChatMessage(Ljava/lang/String;)V",
 		ordinal = 0),
@@ -49,5 +60,11 @@ public abstract class ScreenMixin extends AbstractParentElement
 		if(WurstClient.INSTANCE.getHax().noBackgroundHack
 			.shouldCancelBackground((Screen)(Object)this))
 			ci.cancel();
+	}
+
+	@Override
+	public List<ClickableWidget> getButtons()
+	{
+		return buttons;
 	}
 }

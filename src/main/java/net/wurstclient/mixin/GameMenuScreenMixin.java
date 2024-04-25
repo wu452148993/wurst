@@ -9,13 +9,13 @@ package net.wurstclient.mixin;
 
 import java.util.List;
 
+import net.wurstclient.mixinterface.IScreen;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -42,7 +42,7 @@ public abstract class GameMenuScreenMixin extends Screen
 	{
 		super(text_1);
 	}
-	
+
 	@Inject(at = {@At("TAIL")}, method = {"initWidgets()V"})
 	private void onInitWidgets(CallbackInfo ci)
 	{
@@ -54,38 +54,43 @@ public abstract class GameMenuScreenMixin extends Screen
 	
 	private void addWurstOptionsButton()
 	{
-		List<ClickableWidget> buttons = Screens.getButtons(this);
-		
+		List<ClickableWidget> buttons = ((IScreen)this).getButtons();
+
 		int buttonY = -1;
 		int buttonI = -1;
-		
+
 		for(int i = 0; i < buttons.size(); ++i)
 		{
 			ClickableWidget button = buttons.get(i);
-			
+
 			// insert Wurst button in place of feedback/report row
 			if(isFeedbackButton(button))
 			{
 				buttonY = button.y;
 				buttonI = i;
 			}
-			
+
 			// make feedback/report buttons invisible
 			// (removing them completely would break ModMenu)
 			if(isFeedbackButton(button) || isBugReportButton(button))
 				button.visible = false;
 		}
-		
+
 		if(buttonY == -1 || buttonI == -1)
 			throw new CrashException(
 				CrashReport.create(new IllegalStateException(),
 					"Someone deleted the Feedback button!"));
-		
+
 		wurstOptionsButton = new ButtonWidget(width / 2 - 102, buttonY, 204, 20,
 			new LiteralText("            Options"), b -> openWurstOptions());
-		buttons.add(buttonI, wurstOptionsButton);
+		//buttons.add(buttonI, wurstOptionsButton);
+
+//		wurstOptionsButton = new ButtonWidget(width / 2 - 102, height / 4 + 56, 204, 20,
+//				new LiteralText("            Options"), b -> openWurstOptions());
+//
+		addButton(wurstOptionsButton);
 	}
-	
+
 	private boolean isFeedbackButton(ClickableWidget button)
 	{
 		return hasTrKey(button, "menu.sendFeedback");
