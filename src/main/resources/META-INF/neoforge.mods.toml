@@ -4,23 +4,23 @@ loaderVersion = "[4,)"
 license = "Insert License Here"
 
 [[mods]]
-modId = "example_mod"
+modId = "wurst"
 version = "${version}"
-displayName = "Example Mod"
+displayName = "Wurst Mod"
 authors = "Me!"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
 #logoFile = ""
 
-[[dependencies.example_mod]]
+[[dependencies.wurst]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.example_mod]]
+[[dependencies.wurst]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21.1,)"
@@ -28,4 +28,4 @@ ordering = "NONE"
 side = "BOTH"
 
 [[mixins]]
-config = "example_mod.mixins.json"
+config = "wurst.mixins.json"

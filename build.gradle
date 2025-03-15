@@ -51,6 +51,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/wurst.accesswidener")
+}
+
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
