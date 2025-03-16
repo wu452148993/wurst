@@ -75,6 +75,6 @@ public enum CmdUtils
 		CreativeInventoryActionC2SPacket packet =
 			new CreativeInventoryActionC2SPacket(
 				InventoryUtils.toNetworkSlot(slot), stack);
-		MC.player.networkHandler.sendPacket(packet);
+		MC.player.networkHandler.send(packet);
 	}
 }

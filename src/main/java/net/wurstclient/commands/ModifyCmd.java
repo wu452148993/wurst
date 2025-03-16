@@ -71,7 +71,7 @@ public final class ModifyCmd extends Command
 		}
 		
 		MC.player.networkHandler
-			.sendPacket(new CreativeInventoryActionC2SPacket(
+			.send(new CreativeInventoryActionC2SPacket(
 				36 + player.getInventory().selectedSlot, stack));
 		
 		ChatUtils.message("Item modified.");

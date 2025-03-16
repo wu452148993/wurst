@@ -100,7 +100,7 @@ public final class SwingHandSetting
 		
 		SERVER("Server-side",
 			hand -> MC.player.networkHandler
-				.sendPacket(new HandSwingC2SPacket(hand))),
+				.send(new HandSwingC2SPacket(hand))),
 		
 		CLIENT("Client-side", hand -> MC.player.swingHand(hand));
 		

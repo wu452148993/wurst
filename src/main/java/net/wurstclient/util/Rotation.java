@@ -34,7 +34,7 @@ public record Rotation(float yaw, float pitch)
 	
 	public void sendPlayerLookPacket(boolean onGround)
 	{
-		MC.player.networkHandler.sendPacket(
+		MC.player.networkHandler.send(
 			new PlayerMoveC2SPacket.LookAndOnGround(yaw, pitch, onGround));
 	}
 	

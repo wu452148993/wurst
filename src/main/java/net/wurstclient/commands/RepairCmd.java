@@ -38,7 +38,7 @@ public final class RepairCmd extends Command
 		ItemStack stack = getHeldStack(player);
 		stack.setDamage(0);
 		MC.player.networkHandler
-			.sendPacket(new CreativeInventoryActionC2SPacket(
+			.send(new CreativeInventoryActionC2SPacket(
 				36 + player.getInventory().selectedSlot, stack));
 		
 		ChatUtils.message("Item repaired.");

@@ -95,7 +95,7 @@ public final class CriticalsHack extends Hack
 	private void sendFakeY(double offset, boolean onGround)
 	{
 		MC.player.networkHandler
-			.sendPacket(new PositionAndOnGround(MC.player.getX(),
+			.send(new PositionAndOnGround(MC.player.getX(),
 				MC.player.getY() + offset, MC.player.getZ(), onGround));
 	}
 	

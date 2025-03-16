@@ -188,9 +188,9 @@ public enum BlockBreaker
 					continue;
 				
 				// break block
-				netHandler.sendPacket(new PlayerActionC2SPacket(
+				netHandler.send(new PlayerActionC2SPacket(
 					Action.START_DESTROY_BLOCK, pos, side));
-				netHandler.sendPacket(new PlayerActionC2SPacket(
+				netHandler.send(new PlayerActionC2SPacket(
 					Action.STOP_DESTROY_BLOCK, pos, side));
 				
 				break;

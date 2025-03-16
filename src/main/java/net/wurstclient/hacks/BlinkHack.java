@@ -65,7 +65,7 @@ public final class BlinkHack extends Hack
 		EVENTS.remove(PacketOutputListener.class, this);
 		
 		fakePlayer.despawn();
-		packets.forEach(p -> MC.player.networkHandler.sendPacket(p));
+		packets.forEach(p -> MC.player.networkHandler.send(p));
 		packets.clear();
 	}
 	

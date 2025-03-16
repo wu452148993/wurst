@@ -126,7 +126,7 @@ public final class SneakHack extends Hack
 		ClientPlayerEntity player = MC.player;
 		ClientCommandC2SPacket packet =
 			new ClientCommandC2SPacket(player, mode);
-		player.networkHandler.sendPacket(packet);
+		player.networkHandler.send(packet);
 	}
 	
 	private enum SneakMode

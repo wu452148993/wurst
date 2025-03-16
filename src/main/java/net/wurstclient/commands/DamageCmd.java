@@ -69,7 +69,7 @@ public final class DamageCmd extends Command
 	
 	private void sendPosition(double x, double y, double z, boolean onGround)
 	{
-		MC.player.networkHandler.sendPacket(
+		MC.player.networkHandler.send(
 			new PlayerMoveC2SPacket.PositionAndOnGround(x, y, z, onGround));
 	}
 }

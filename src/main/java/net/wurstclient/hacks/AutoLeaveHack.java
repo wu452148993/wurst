@@ -117,7 +117,7 @@ public final class AutoLeaveHack extends Hack implements UpdateListener
 		
 		SELFHURT("SelfHurt",
 			() -> MC.getNetworkHandler()
-				.sendPacket(PlayerInteractEntityC2SPacket.attack(MC.player,
+				.send(PlayerInteractEntityC2SPacket.attack(MC.player,
 					MC.player.isSneaking())));
 		
 		private final String name;

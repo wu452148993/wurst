@@ -63,7 +63,7 @@ public final class ArrowDmgHack extends Hack implements StopUsingItemListener
 		if(!isValidItem(player.getMainHandStack().getItem()))
 			return;
 		
-		netHandler.sendPacket(
+		netHandler.send(
 			new ClientCommandC2SPacket(player, Mode.START_SPRINTING));
 		
 		double x = player.getX();
@@ -84,7 +84,7 @@ public final class ArrowDmgHack extends Hack implements StopUsingItemListener
 	private void sendPos(double x, double y, double z, boolean onGround)
 	{
 		ClientPlayNetworkHandler netHandler = MC.player.networkHandler;
-		netHandler.sendPacket(new PositionAndOnGround(x, y, z, onGround));
+		netHandler.send(new PositionAndOnGround(x, y, z, onGround));
 	}
 	
 	private boolean isValidItem(Item item)

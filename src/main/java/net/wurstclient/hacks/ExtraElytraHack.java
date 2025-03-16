@@ -96,7 +96,7 @@ public final class ExtraElytraHack extends Hack implements UpdateListener
 	{
 		ClientCommandC2SPacket packet = new ClientCommandC2SPacket(MC.player,
 			ClientCommandC2SPacket.Mode.START_FALL_FLYING);
-		MC.player.networkHandler.sendPacket(packet);
+		MC.player.networkHandler.send(packet);
 	}
 	
 	private void controlHeight()

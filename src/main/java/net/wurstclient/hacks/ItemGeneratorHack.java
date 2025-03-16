@@ -82,7 +82,7 @@ public final class ItemGeneratorHack extends Hack implements UpdateListener
 			CreativeInventoryActionC2SPacket packet =
 				new CreativeInventoryActionC2SPacket(i, stack);
 			
-			MC.player.networkHandler.sendPacket(packet);
+			MC.player.networkHandler.send(packet);
 		}
 		
 		for(int i = 9; i < 9 + stacks; i++)

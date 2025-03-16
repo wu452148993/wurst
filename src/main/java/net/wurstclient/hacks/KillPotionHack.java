@@ -71,7 +71,7 @@ public final class KillPotionHack extends Hack
 			if(!MC.player.getInventory().getStack(i).isEmpty())
 				continue;
 			
-			MC.player.networkHandler.sendPacket(
+			MC.player.networkHandler.send(
 				new CreativeInventoryActionC2SPacket(36 + i, stack));
 			return true;
 		}

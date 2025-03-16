@@ -253,7 +253,7 @@ public final class AutoLibrarianHack extends Hack
 			tradeScreen.getScreenHandler().setRecipeIndex(0);
 			tradeScreen.getScreenHandler().switchTo(0);
 			MC.getNetworkHandler()
-				.sendPacket(new SelectMerchantTradeC2SPacket(0));
+				.send(new SelectMerchantTradeC2SPacket(0));
 			
 			// buy whatever the villager is selling
 			MC.interactionManager.clickSlot(
